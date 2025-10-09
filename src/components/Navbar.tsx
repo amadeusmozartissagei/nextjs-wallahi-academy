@@ -12,11 +12,9 @@ export default function Navbar() {
       {/* Logo */}
       <div className="flex items-center space-x-3">
         <a href="https://akualita-academy.co.id/">
-          <Image 
+          <img 
             src="/images/Logo/Logo2.png" 
             alt="Logo Akualita Academy" 
-            width={40}
-            height={40}
             className="h-10 w-auto"
           />
         </a>
