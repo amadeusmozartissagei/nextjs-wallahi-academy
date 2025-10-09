@@ -6,6 +6,11 @@ import Footer from '@/components/Footer';
 export const metadata: Metadata = {
   title: "Akualita Academy - Beranda",
   description: "Kami bantu kamu tingkatkan keterampilan, raih sertifikasi resmi, dan siap hadapi dunia kerja dengan lebih percaya diri!",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
