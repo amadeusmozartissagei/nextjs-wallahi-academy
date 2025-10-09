@@ -6,6 +6,7 @@ import Image from 'next/image';
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+  const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-between px-6 md:px-20 py-4 bg-white shadow-sm transition duration-300">
@@ -24,7 +25,12 @@ export default function Navbar() {
       <button 
         id="menu-toggle" 
         className="block md:hidden focus:outline-none"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        onClick={() => {
+          setIsMenuOpen(!isMenuOpen);
+          if (isMenuOpen) {
+            setIsMobileDropdownOpen(false);
+          }
+        }}
       >
         <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -37,53 +43,76 @@ export default function Navbar() {
         {/* Program Desktop */}
         <li className="group relative cursor-pointer hidden md:block">
           <div className="relative group">
-            <button className="flex items-center space-x-1 text-base hover:text-[#00ACF8] transition duration-300">
+            <button 
+              className="flex items-center space-x-1 text-base hover:text-[#00ACF8] transition duration-300"
+              onClick={() => setIsDesktopDropdownOpen(!isDesktopDropdownOpen)}
+              onMouseEnter={() => setIsDesktopDropdownOpen(true)}
+              onMouseLeave={() => setIsDesktopDropdownOpen(false)}
+            >
               <span>Program</span>
-              <svg className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg 
+                className={`w-4 h-4 transition-transform duration-300 mt-0.5 ${isDesktopDropdownOpen ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                viewBox="0 0 24 24"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
           </div>
 
           {/* Megamenu */}
-          <div className="absolute left-1/2 top-full hidden group-hover:block -translate-x-1/2 w-[1000px] bg-white shadow-xl z-50 transition duration-600 rounded-xl ml-28">
-            <div className="px-12 py-10 grid grid-cols-2 gap-10 text-gray-700 text-base">
+          <div 
+            className={`absolute left-1/2 top-full -translate-x-1/2 w-[80vw] max-w-[800px] bg-white shadow-xl z-50 transition-all duration-300 rounded-xl ml-20 ${
+              isDesktopDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+            }`}
+            onMouseEnter={() => setIsDesktopDropdownOpen(true)}
+            onMouseLeave={() => setIsDesktopDropdownOpen(false)}
+          >
+            <div className="px-4 lg:px-8 py-4 lg:py-6 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 text-gray-700 text-base">
               
               {/* Pelatihan Sertifikasi */}
-              <div className="flex items-start space-x-3 hover:bg-[#E6F8FE] p-4 transition duration-300 rounded-xl">
-                <div>
-                  <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-16 h-16 rounded-xl flex items-center justify-center mb-2">
-                    <Image src="/images/svg/certi12.svg" alt="Icon Buku" width={40} height={40} />
+              <div className="flex flex-col sm:flex-row items-start space-y-2 sm:space-y-0 sm:space-x-3 hover:bg-[#E6F8FE] p-3 transition duration-300 rounded-xl">
+                <div className="flex-shrink-0">
+                  <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center mb-1">
+                    <Image src="/images/svg/certi12.svg" alt="Icon Buku" width={24} height={24} />
                   </div>
-                  <h4 className="font-semibold text-lg text-gray-900 mb-1">Pelatihan Sertifikasi</h4>
-                  <p className="text-base text-gray-600">
-                    Tingkatkan kompetensi melalui pelatihan sertifikasi resmi dengan materi dari instruktur berpengalaman, siap menghadapi tantangan kerja.
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-sm sm:text-base text-gray-900 mb-1">Pelatihan Sertifikasi</h4>
+                  <p className="text-xs sm:text-sm text-gray-600">
+                    Tingkatkan kompetensi melalui pelatihan sertifikasi resmi dengan materi dari instruktur berpengalaman.
                   </p>
                 </div>
               </div>
 
               {/* Pelatihan Non-Sertifikasi */}
-              <div className="flex items-start space-x-3 hover:bg-[#E6F8FE] p-4 transition duration-300 rounded-xl">
-                <div>
-                  <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-16 h-16 rounded-xl flex items-center justify-center mb-2">
-                    <Image src="/images/svg/noncerti12.svg" alt="Icon Buku" width={48} height={48} />
+              <div className="flex flex-col sm:flex-row items-start space-y-2 sm:space-y-0 sm:space-x-3 hover:bg-[#E6F8FE] p-3 transition duration-300 rounded-xl">
+                <div className="flex-shrink-0">
+                  <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center mb-1">
+                    <Image src="/images/svg/noncerti12.svg" alt="Icon Buku" width={24} height={24} />
                   </div>
-                  <h4 className="font-semibold text-lg text-gray-900 mb-1">Pelatihan Non-Sertifikasi</h4>
-                  <p className="text-base text-gray-600">
-                    Pelatihan praktis untuk menambah pengetahuan dan keterampilan tanpa persyaratan ujian sertifikasi, fleksibel sesuai kebutuhan.
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-sm sm:text-base text-gray-900 mb-1">Pelatihan Non-Sertifikasi</h4>
+                  <p className="text-xs sm:text-sm text-gray-600">
+                    Pelatihan praktis untuk menambah pengetahuan dan keterampilan tanpa persyaratan ujian sertifikasi.
                   </p>
                 </div>
               </div>
 
               {/* Bootcamp */}
-              <div className="flex items-start space-x-3 hover:bg-[#E6F8FE] p-4 transition duration-300 rounded-xl">
-                <div>
-                  <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-16 h-16 rounded-xl flex items-center justify-center mb-2">
-                    <Image src="/images/svg/boot12.svg" alt="Icon Buku" width={32} height={32} />
+              <div className="flex flex-col sm:flex-row items-start space-y-2 sm:space-y-0 sm:space-x-3 hover:bg-[#E6F8FE] p-3 transition duration-300 rounded-xl">
+                <div className="flex-shrink-0">
+                  <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center mb-1">
+                    <Image src="/images/svg/boot12.svg" alt="Icon Buku" width={24} height={24} />
                   </div>
-                  <h4 className="font-semibold text-lg text-gray-900 mb-1">Bootcamp</h4>
-                  <p className="text-base text-gray-600">
-                    Program intensif dengan pembelajaran terstruktur dan praktik langsung, dirancang untuk menguasai keterampilan dalam waktu singkat.
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-sm sm:text-base text-gray-900 mb-1">Bootcamp</h4>
+                  <p className="text-xs sm:text-sm text-gray-600">
+                    Program intensif dengan pembelajaran terstruktur dan praktik langsung untuk menguasai keterampilan.
                   </p>
                 </div>
               </div>
@@ -93,21 +122,35 @@ export default function Navbar() {
         </li>
 
         {/* Program Mobile */}
-        <button 
-          type="button" 
-          onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
-          className="cursor-pointer flex items-center w-full hover:text-[#0c9df0] focus:outline-none text-base block md:hidden"
-        >
-          Program
-          <svg className="w-4 h-4 transition-transform duration-300 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-        <ul className={`${isMobileDropdownOpen ? 'flex' : 'hidden'} flex-col pl-4 mt-2 space-y-2`}>
-          <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300"><span className="text-base">Pelatihan Sertifikasi</span></li>
-          <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300"><span className="text-base">Pelatihan Non-Sertifikasi</span></li>
-          <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300"><span className="text-base">Bootcamp</span></li>
-        </ul>
+        <li className="block md:hidden w-full">
+          <button 
+            type="button" 
+            onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
+            className="cursor-pointer flex items-center justify-between w-full hover:text-[#0c9df0] focus:outline-none text-base"
+          >
+            Program
+            <svg 
+              className={`w-4 h-4 transition-transform duration-300 mt-0.5 ${isMobileDropdownOpen ? 'rotate-180' : ''}`} 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <ul className={`${isMobileDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden transition-all duration-300 flex-col pl-4 mt-2 space-y-2`}>
+            <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300 py-2">
+              <span className="text-base">Pelatihan Sertifikasi</span>
+            </li>
+            <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300 py-2">
+              <span className="text-base">Pelatihan Non-Sertifikasi</span>
+            </li>
+            <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300 py-2">
+              <span className="text-base">Bootcamp</span>
+            </li>
+          </ul>
+        </li>
 
         {/* Other Menu Items */}
         <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300"><span className="text-base">Tentang Akualita Academy</span></li>
