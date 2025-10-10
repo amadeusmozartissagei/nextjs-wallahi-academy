@@ -29,53 +29,61 @@ export default function BenefitsSection() {
   ];
 
   return (
-    <section className="bg-[#F8FCFE] py-16 px-6 md:px-20">
-      <div className="flex items-center justify-center px-4">
-        <h2 className="text-center max-w-4xl text-3xl md:text-4xl font-bold text-[#1F2756] mb-3">
-          Berbagai Manfaat yang Akan Kamu Dapatkan Saat Mendaftar di{' '}
-          <span className="bg-[#00ACF8] text-white inline-block px-3 py-1 rounded mt-1 text-2xl md:text-4xl">
-            Akualita Academy
-          </span>
-        </h2>
-      </div>
-
-      <div className="flex items-center justify-center mb-6">
-        <p className="text-lg md:text-xl text-[#5E6574] mb-10 hidden md:block">
-          Bersama Akualita Academy, tingkatkan kompetensi, raih sertifikasi, dan siap hadapi dunia kerja!
-        </p>
-      </div>
-
-      <div className="max-w-9xl mx-auto grid md:grid-cols-[0.5fr_0.8fr] gap-10 items-center">
-        <div className="space-y-4">
-          {benefits.map((benefit, index) => (
-            <div 
-              key={index}
-              className="flex items-start gap-4 border border-gray-300 p-3 rounded-xl transition-all duration-300 group hover:bg-[#00ACF8] hover:border-white hover:shadow-md max-w-xl"
-            >
-              <div className="text-[#00ACF8] text-3xl group-hover:text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 10-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clipRule="evenodd"/>
-                </svg>
-              </div>
-              <div>
-                <h3 className="font-bold text-xl mb-1 text-[#1F2756] group-hover:text-white">
-                  {benefit.title}
-                </h3>
-                <p className="text-[#5E6574] leading-relaxed group-hover:text-white">
-                  {benefit.description}
-                </p>
-              </div>
-            </div>
-          ))}
+    <section className="bg-[#F8FCFE] py-12 sm:py-16 lg:py-20 px-4 sm:px-6 md:px-16 lg:px-20">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12 lg:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#1F2756] leading-tight mb-4 lg:mb-6">
+            Berbagai Manfaat yang Akan Kamu Dapatkan Saat Mendaftar di{' '}
+            <span className="bg-[#00ACF8] text-white inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-lg mt-2 text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+              Akualita Academy
+            </span>
+          </h2>
+          <p className="text-base sm:text-lg md:text-xl text-[#5E6574] max-w-4xl mx-auto leading-relaxed">
+            Bersama Akualita Academy, tingkatkan kompetensi, raih sertifikasi, dan siap hadapi dunia kerja!
+          </p>
         </div>
-        <div className="flex justify-start">
-          <Image 
-            src="/images/Bg/bggg2.png" 
-            alt="Pelatihan Akualita Academy" 
-            width={500}
-            height={400}
-            className="rounded-xl shadow-md w-full md:w-[95%]" 
-          />
+
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
+          {/* Benefits List */}
+          <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
+            {benefits.map((benefit, index) => (
+              <div 
+                key={index}
+                className="flex items-start gap-4 sm:gap-6 border border-gray-300 p-4 sm:p-6 rounded-xl lg:rounded-2xl transition-all duration-300 group hover:bg-[#00ACF8] hover:border-white hover:shadow-lg hover:-translate-y-1"
+              >
+                <div className="flex-shrink-0">
+                  <div className="text-[#00ACF8] group-hover:text-white transition-colors duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 10-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                </div>
+                <div className="flex-grow">
+                  <h3 className="font-bold text-base sm:text-lg lg:text-xl mb-2 text-[#1F2756] group-hover:text-white transition-colors duration-300">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-[#5E6574] leading-relaxed group-hover:text-white transition-colors duration-300">
+                    {benefit.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Image */}
+          <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+            <div className="relative w-full max-w-lg lg:max-w-none">
+              <Image 
+                src="/images/Bg/bggg2.png" 
+                alt="Pelatihan Akualita Academy" 
+                width={500}
+                height={400}
+                className="rounded-xl lg:rounded-2xl shadow-lg w-full h-auto object-cover" 
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

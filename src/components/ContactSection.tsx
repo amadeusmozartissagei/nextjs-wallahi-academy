@@ -25,86 +25,125 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="bg-white py-20 px-6 md:px-16">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-        <div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#1F2756]">
-            Hubungi kami melalui email untuk pertanyaan seputar produk kami
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Email Kamu
-              </label>
-              <input 
-                type="email" 
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="Masukkan email aktif kamu" 
-                className="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#00ACF8]" 
-                required
-              />
+    <section className="bg-white py-12 sm:py-16 lg:py-20 px-4 sm:px-6 md:px-16 lg:px-20">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start">
+          {/* Contact Form */}
+          <div className="order-2 lg:order-1">
+            <div className="mb-8 lg:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#1F2756] leading-tight mb-4 lg:mb-6">
+                Hubungi kami melalui email untuk pertanyaan seputar produk kami
+              </h2>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Subjek Email
-              </label>
-              <input 
-                type="text" 
-                name="subject" 
-                value={formData.subject}
-                onChange={handleInputChange}
-                placeholder="Masukkan subjek email ini" 
-                className="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#00ACF8]" 
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Isi Pesan
-              </label>
-              <textarea 
-                rows={5} 
-                name="message" 
-                value={formData.message}
-                onChange={handleInputChange}
-                placeholder="Masukkan pertanyaan kamu" 
-                className="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#00ACF8]" 
-                required
-              />
-            </div>
-            <button 
-              type="submit" 
-              className="w-full bg-[#00ACF8] text-white px-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-[#0095d9] transition duration-200"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-              </svg>
-              Kirim Email
-            </button>
-          </form>
-        </div>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm sm:text-base font-medium text-gray-700 mb-2">
+                  Email Kamu
+                </label>
+                <input 
+                  type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Masukkan email aktif kamu" 
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 sm:py-3.5 focus:outline-none focus:ring-2 focus:ring-[#00ACF8] focus:border-transparent transition-all duration-200 text-sm sm:text-base" 
+                  required
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm sm:text-base font-medium text-gray-700 mb-2">
+                  Subjek Email
+                </label>
+                <input 
+                  type="text" 
+                  name="subject" 
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  placeholder="Masukkan subjek email ini" 
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 sm:py-3.5 focus:outline-none focus:ring-2 focus:ring-[#00ACF8] focus:border-transparent transition-all duration-200 text-sm sm:text-base" 
+                  required
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm sm:text-base font-medium text-gray-700 mb-2">
+                  Isi Pesan
+                </label>
+                <textarea 
+                  rows={5} 
+                  name="message" 
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Masukkan pertanyaan kamu" 
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 sm:py-3.5 focus:outline-none focus:ring-2 focus:ring-[#00ACF8] focus:border-transparent transition-all duration-200 text-sm sm:text-base resize-none" 
+                  required
+                />
+              </div>
+              
+              <button 
+                type="submit" 
+                className="w-full bg-[#00ACF8] text-white px-6 py-3 sm:py-4 rounded-xl font-semibold flex items-center justify-center gap-2 sm:gap-3 hover:bg-[#0095d9] hover:shadow-lg transform hover:scale-105 transition-all duration-200 text-sm sm:text-base"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                </svg>
+                Kirim Email
+              </button>
+            </form>
+          </div>
 
-        <div className="space-y-4">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.470496169294!2d110.4722692!3d-6.9964396999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708ce1b39ada93%3A0x38813ea0bc529c6a!2sPT%20Adhikriya%20Kualita%20Utama%20(AKUALITA)!5e0!3m2!1sid!2sid!4v1720500000000!5m2!1sid!2sid" 
-            width="100%" 
-            height="400" 
-            style={{ border: 0, borderRadius: '0.75rem' }}
-            allowFullScreen={true}
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+          {/* Map & Contact Info */}
+          <div className="space-y-6 lg:space-y-8 order-1 lg:order-2">
+            {/* Map */}
+            <div className="relative">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.470496169294!2d110.4722692!3d-6.9964396999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708ce1b39ada93%3A0x38813ea0bc529c6a!2sPT%20Adhikriya%20Kualita%20Utama%20(AKUALITA)!5e0!3m2!1sid!2sid!4v1720500000000!5m2!1sid!2sid" 
+                width="100%" 
+                height="300"
+                className="rounded-xl lg:rounded-2xl shadow-lg"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
 
-          <div>
-            <h3 className="text-xl font-bold text-[#1F2756] mb-1">Kantor Kami</h3>
-            <p className="text-base text-gray-700">
-              AKUALITA Academy Office <br />
-              CV Primera Purwina Gemilang :<br />
-              Jl. Abdul Manan No.25B Semarang <br />
-              Phone : 0811-2701-1818 (General Info)
-            </p>
+            {/* Contact Info */}
+            <div className="bg-[#F8FCFE] p-6 lg:p-8 rounded-xl lg:rounded-2xl">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#1F2756] mb-4 lg:mb-6">Kantor Kami</h3>
+              <div className="space-y-3 lg:space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-[#00ACF8]">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                      <span className="font-semibold">AKUALITA Academy Office</span><br />
+                      CV Primera Purwina Gemilang<br />
+                      Jl. Abdul Manan No.25B Semarang
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <div className="flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-[#00ACF8]">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h.75a2.25 2.25 0 0 0 2.25-2.25v-3.372a2.25 2.25 0 0 0-1.5-2.122l-3.5-1.5a2.25 2.25 0 0 0-2.5.5l-1.5 1.5a2.25 2.25 0 0 1-2.25.75 2.25 2.25 0 0 1-2.25-2.25V6.75Z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm sm:text-base text-gray-700">
+                      <span className="font-semibold">Phone:</span> 0811-2701-1818 (General Info)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
