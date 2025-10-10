@@ -67,13 +67,19 @@ export default function MitraFAQ() {
                   </svg>
                 </div>
               </button>
-              {openFaq === index && (
+              <div 
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  openFaq === index 
+                    ? 'max-h-96 opacity-100' 
+                    : 'max-h-0 opacity-0'
+                }`}
+              >
                 <div className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8">
                   <div className="text-sm sm:text-base text-gray-600 leading-relaxed">
                     {faq.answer}
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
