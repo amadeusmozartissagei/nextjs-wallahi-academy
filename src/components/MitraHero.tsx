@@ -2,22 +2,22 @@ import Image from 'next/image';
 
 export default function MitraHero() {
   return (
-    <section className="w-full min-h-screen text-white md:pt-0 pb-10 px-3 md:px-16 relative overflow-hidden">
-      {/* Background Image dengan Next.js Image */}
-      <div className="absolute inset-0">
+    <section className="w-full text-white relative overflow-hidden">
+      {/* Background Image dengan ratio 1440 x 589 */}
+      <div className="w-full h-auto">
         <Image
           src="/images/Bg/bgmitra.png"
           alt="Background Mitra"
-          fill
-          className="object-cover"
+          width={1440}
+          height={589}
+          className="w-full h-auto object-cover"
           priority
           quality={75}
         />
       </div>
-      {/* Gradient Overlay - Sesuai contoh gambar */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#05E089]/70 to-[#00ACF8]/80"></div>
+      {/* Tidak ada overlay - tampilkan gambar asli */}
       
-      <div className="relative z-10 flex items-center justify-end max-w-7xl mx-auto w-full min-h-screen">
+      <div className="absolute inset-0 z-10 flex items-center justify-end max-w-7xl mx-auto w-full px-3 md:px-16">
         {/* Teks di kanan */}
         <div className="space-y-4 ml-4 mt-6 text-right max-w-2xl">
           <h2 className="text-4xl sm:text-3xl md:text-4xl max-[1024px]:text-3xl lg:text-4xl xl:text-6xl font-bold text-white">
