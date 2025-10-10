@@ -5,9 +5,9 @@ export default function HeroSection() {
     <section 
       className="w-full min-h-screen text-white flex items-center py-8 md:py-12 px-4 sm:px-6 md:px-16 lg:px-20" 
       style={{
-        backgroundImage: 'url(/images/Bg/ww.jpg)',
+        backgroundImage: 'url(/images/Bg/ww.png)',
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center 70%',
         backgroundRepeat: 'no-repeat'
       }}
     >
