@@ -39,10 +39,7 @@ export default function MitraSteps() {
               key={index}
               className="border-2 border-gray-200 p-6 lg:p-8 rounded-xl lg:rounded-2xl transition-all duration-300 flex flex-col items-center text-center hover:bg-[#E6F8FE] hover:shadow-xl hover:-translate-y-2 hover:border-b-4 hover:border-[#00ACF8] group"
             >
-              {/* Step Number */}
-              <div className="absolute -top-3 -left-3 w-8 h-8 bg-[#00ACF8] text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">
-                {index + 1}
-              </div>
+              {/* Step Number removed */}
 
               {/* Icon */}
               <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-xl lg:rounded-2xl flex items-center justify-center mb-4 lg:mb-6 group-hover:scale-110 transition-transform duration-300">
