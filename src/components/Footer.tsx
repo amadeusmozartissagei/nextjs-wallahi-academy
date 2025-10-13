@@ -5,9 +5,9 @@ export default function Footer() {
     <>
       <footer className="bg-[#222222] text-white py-8 sm:py-12 px-4 sm:px-6 md:px-16 lg:px-20">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 text-left">
             {/* Logo & Description */}
-            <div className="sm:col-span-2 lg:col-span-2 flex flex-col items-start">
+            <div className="sm:col-span-2 lg:col-span-1 flex flex-col items-start">
               <Image 
                 src="/images/Logo/Logo1.png" 
                 alt="Logo Akualita Academy" 
@@ -20,20 +20,10 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* Menu Cepat */}
-            <div className="flex flex-col items-start">
-              <h3 className="text-base sm:text-lg font-semibold mb-4 text-gray-200">Menu Cepat</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li><a href="#" className="text-sm sm:text-base hover:text-white transition-colors duration-200">Program</a></li>
-                <li><a href="#" className="text-sm sm:text-base hover:text-white transition-colors duration-200">Tentang Akualita Academy</a></li>
-                <li><a href="#" className="text-sm sm:text-base hover:text-white transition-colors duration-200">Kursus Singkat</a></li>
-                <li><a href="/mitra" className="text-sm sm:text-base hover:text-white transition-colors duration-200">Mitra</a></li>
-                <li><a href="https://akualita.com/" className="text-sm sm:text-base hover:text-white transition-colors duration-200">Pelatihan Korporasi</a></li>
-              </ul>
-            </div>
+            
 
             {/* Sosial Media & Kontak */}
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col items-start lg:col-span-1">
               <h3 className="text-base sm:text-lg font-semibold mb-4 text-gray-200">Hubungi Kami</h3>
               
               {/* Kontak */}
@@ -74,6 +64,85 @@ export default function Footer() {
                     </svg>
                     <span className="text-sm sm:text-base">Instagram</span>
                   </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Metode Pembayaran */}
+            <div className="flex flex-col items-start lg:col-span-1">
+              <h3 className="text-base sm:text-lg font-semibold mb-4 text-gray-200">Metode Pembayaran</h3>
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
+                  <Image
+                    src="/images/Payment/1-BNI.png"
+                    alt="BNI"
+                    width={160}
+                    height={48}
+                    className="h-8 sm:h-9 w-auto"
+                  />
+                </div>
+                <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
+                  <Image
+                    src="/images/Payment/2-Bank-Mandiri.png"
+                    alt="Bank Mandiri"
+                    width={160}
+                    height={48}
+                    className="h-8 sm:h-9 w-auto"
+                  />
+                </div>
+                <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
+                  <Image
+                    src="/images/Payment/3-Bank%20Permata.png"
+                    alt="Bank Permata"
+                    width={160}
+                    height={48}
+                    className="h-8 sm:h-9 w-auto"
+                  />
+                </div>
+                <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
+                  <Image
+                    src="/images/Payment/4-BSI.png"
+                    alt="BSI"
+                    width={160}
+                    height={48}
+                    className="h-8 sm:h-9 w-auto"
+                  />
+                </div>
+                <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
+                  <Image
+                    src="/images/Payment/5-Bank%20Sahabat%20Sampoerna.png"
+                    alt="Bank Sahabat Sampoerna"
+                    width={200}
+                    height={48}
+                    className="h-8 sm:h-9 w-auto"
+                  />
+                </div>
+                <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
+                  <Image
+                    src="/images/Payment/6-Bank-BJB.png"
+                    alt="Bank BJB"
+                    width={160}
+                    height={48}
+                    className="h-8 sm:h-9 w-auto"
+                  />
+                </div>
+                <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
+                  <Image
+                    src="/images/Payment/7-BRI.png"
+                    alt="BRI"
+                    width={160}
+                    height={48}
+                    className="h-8 sm:h-9 w-auto"
+                  />
+                </div>
+                <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
+                  <Image
+                    src="/images/Payment/8-CIMB-Niaga.png"
+                    alt="CIMB Niaga"
+                    width={200}
+                    height={48}
+                    className="h-8 sm:h-9 w-auto"
+                  />
                 </div>
               </div>
             </div>
