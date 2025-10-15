@@ -78,7 +78,7 @@ export default function Footer() {
                     alt="BNI"
                     width={160}
                     height={48}
-                    className="h-8 sm:h-9 w-auto"
+                    className="h-8 sm:h-10 w-auto object-contain"
                   />
                 </div>
                 <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
@@ -87,7 +87,7 @@ export default function Footer() {
                     alt="Bank Mandiri"
                     width={160}
                     height={48}
-                    className="h-8 sm:h-9 w-auto"
+                    className="h-8 sm:h-10 w-auto object-contain"
                   />
                 </div>
                 <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
@@ -96,7 +96,7 @@ export default function Footer() {
                     alt="Bank Permata"
                     width={160}
                     height={48}
-                    className="h-8 sm:h-9 w-auto"
+                    className="h-8 sm:h-10 w-auto object-contain"
                   />
                 </div>
                 <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
@@ -105,7 +105,7 @@ export default function Footer() {
                     alt="BSI"
                     width={160}
                     height={48}
-                    className="h-8 sm:h-9 w-auto"
+                    className="h-8 sm:h-10 w-auto object-contain"
                   />
                 </div>
                 <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
@@ -114,7 +114,7 @@ export default function Footer() {
                     alt="Bank Sahabat Sampoerna"
                     width={200}
                     height={48}
-                    className="h-8 sm:h-9 w-auto"
+                    className="h-8 sm:h-10 w-auto object-contain"
                   />
                 </div>
                 <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
@@ -123,7 +123,7 @@ export default function Footer() {
                     alt="Bank BJB"
                     width={160}
                     height={48}
-                    className="h-8 sm:h-9 w-auto"
+                    className="h-8 sm:h-10 w-auto object-contain"
                   />
                 </div>
                 <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
@@ -132,7 +132,7 @@ export default function Footer() {
                     alt="BRI"
                     width={160}
                     height={48}
-                    className="h-8 sm:h-9 w-auto"
+                    className="h-8 sm:h-10 w-auto object-contain"
                   />
                 </div>
                 <div className="bg-white border border-gray-200 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 inline-flex items-center justify-center">
@@ -141,7 +141,7 @@ export default function Footer() {
                     alt="CIMB Niaga"
                     width={200}
                     height={48}
-                    className="h-8 sm:h-9 w-auto"
+                    className="h-8 sm:h-10 w-auto object-contain"
                   />
                 </div>
               </div>
