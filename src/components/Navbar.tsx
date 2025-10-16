@@ -45,13 +45,13 @@ export default function Navbar() {
 
           {/* Desktop Menu Items - Rata Kanan */}
           <div className="hidden md:flex items-center">
-            <ul className="flex items-center space-x-4 lg:space-x-6 xl:space-x-8 text-sm text-gray-900">
+            <ul className="flex items-center space-x-4 lg:space-x-6 xl:space-x-8 text-xs text-gray-900">
         
               {/* Program Desktop */}
               <li className="group relative cursor-pointer">
                 <div className="relative group">
                   <button 
-                    className="flex items-center space-x-1 text-sm md:text-base hover:text-[#00ACF8] transition duration-300 py-2"
+                    className="flex items-center space-x-1 text-xs md:text-sm hover:text-[#00ACF8] transition duration-300 py-2"
                     onClick={() => setIsDesktopDropdownOpen(!isDesktopDropdownOpen)}
                     onMouseEnter={() => setIsDesktopDropdownOpen(true)}
                     onMouseLeave={() => setIsDesktopDropdownOpen(false)}
@@ -71,54 +71,54 @@ export default function Navbar() {
 
                 {/* Megamenu */}
                 <div 
-                  className={`absolute left-1/2 top-full -translate-x-1/2 w-[95vw] max-w-[800px] bg-white shadow-xl z-50 transition-all duration-300 rounded-xl mt-2 ${
+                  className={`absolute left-1/2 top-full -translate-x-1/2 w-[80vw] max-w-[600px] bg-white shadow-xl z-50 transition-all duration-300 rounded-xl mt-2 ${
                     isDesktopDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                   }`}
                   onMouseEnter={() => setIsDesktopDropdownOpen(true)}
                   onMouseLeave={() => setIsDesktopDropdownOpen(false)}
                 >
-                  <div className="px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 text-gray-700">
+                  <div className="px-3 md:px-4 lg:px-6 py-3 md:py-4 lg:py-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 text-gray-700">
                     
                     {/* Pelatihan Sertifikasi */}
-                    <div className="flex flex-col items-center text-center lg:text-left hover:bg-[#E6F8FE] p-4 lg:p-6 transition duration-300 rounded-xl">
-                      <div className="flex-shrink-0 mb-4">
-                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-12 h-12 lg:w-14 lg:h-14 rounded-lg flex items-center justify-center mx-auto lg:mx-0">
-                          <Image src="/images/svg/certi12.svg" alt="Icon Sertifikasi" width={28} height={28} className="w-6 h-6 lg:w-7 lg:h-7" />
+                    <div className="flex flex-col items-center text-center lg:text-left hover:bg-[#E6F8FE] p-3 lg:p-4 transition duration-300 rounded-xl">
+                      <div className="flex-shrink-0 mb-3">
+                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-10 h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center mx-auto lg:mx-0">
+                          <Image src="/images/svg/certi12.svg" alt="Icon Sertifikasi" width={24} height={24} className="w-5 h-5 lg:w-6 lg:h-6" />
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-base lg:text-lg text-gray-900 mb-2">Pelatihan Sertifikasi</h4>
-                        <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
+                        <h4 className="font-semibold text-sm lg:text-base text-gray-900 mb-1">Pelatihan Sertifikasi</h4>
+                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed">
                           Tingkatkan kompetensi melalui pelatihan sertifikasi resmi dengan materi dari instruktur berpengalaman.
                         </p>
                       </div>
                     </div>
 
                     {/* Pelatihan Non-Sertifikasi */}
-                    <div className="flex flex-col items-center text-center lg:text-left hover:bg-[#E6F8FE] p-4 lg:p-6 transition duration-300 rounded-xl">
-                      <div className="flex-shrink-0 mb-4">
-                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-12 h-12 lg:w-14 lg:h-14 rounded-lg flex items-center justify-center mx-auto lg:mx-0">
-                          <Image src="/images/svg/noncerti12.svg" alt="Icon Non-Sertifikasi" width={28} height={28} className="w-6 h-6 lg:w-7 lg:h-7" />
+                    <div className="flex flex-col items-center text-center lg:text-left hover:bg-[#E6F8FE] p-3 lg:p-4 transition duration-300 rounded-xl">
+                      <div className="flex-shrink-0 mb-3">
+                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-10 h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center mx-auto lg:mx-0">
+                          <Image src="/images/svg/noncerti12.svg" alt="Icon Non-Sertifikasi" width={24} height={24} className="w-5 h-5 lg:w-6 lg:h-6" />
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-base lg:text-lg text-gray-900 mb-2">Pelatihan Non-Sertifikasi</h4>
-                        <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
+                        <h4 className="font-semibold text-sm lg:text-base text-gray-900 mb-1">Pelatihan Non-Sertifikasi</h4>
+                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed">
                           Pelatihan praktis untuk menambah pengetahuan dan keterampilan tanpa persyaratan ujian sertifikasi.
                         </p>
                       </div>
                     </div>
 
                     {/* Bootcamp */}
-                    <div className="flex flex-col items-center text-center lg:text-left hover:bg-[#E6F8FE] p-4 lg:p-6 transition duration-300 rounded-xl">
-                      <div className="flex-shrink-0 mb-4">
-                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-12 h-12 lg:w-14 lg:h-14 rounded-lg flex items-center justify-center mx-auto lg:mx-0">
-                          <Image src="/images/svg/boot12.svg" alt="Icon Bootcamp" width={28} height={28} className="w-6 h-6 lg:w-7 lg:h-7" />
+                    <div className="flex flex-col items-center text-center lg:text-left hover:bg-[#E6F8FE] p-3 lg:p-4 transition duration-300 rounded-xl">
+                      <div className="flex-shrink-0 mb-3">
+                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-10 h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center mx-auto lg:mx-0">
+                          <Image src="/images/svg/boot12.svg" alt="Icon Bootcamp" width={24} height={24} className="w-5 h-5 lg:w-6 lg:h-6" />
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-base lg:text-lg text-gray-900 mb-2">Bootcamp</h4>
-                        <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
+                        <h4 className="font-semibold text-sm lg:text-base text-gray-900 mb-1">Bootcamp</h4>
+                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed">
                           Program intensif dengan pembelajaran terstruktur dan praktik langsung untuk menguasai keterampilan.
                         </p>
                       </div>
@@ -130,23 +130,23 @@ export default function Navbar() {
 
               {/* Other Desktop Menu Items */}
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300">
-                <span className="text-sm md:text-base py-2">Tentang Akualita Academy</span>
+                <span className="text-xs md:text-sm py-2">Tentang Akualita Academy</span>
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300">
-                <span className="text-sm md:text-base py-2">Kursus Singkat</span>
+                <span className="text-xs md:text-sm py-2">Menjadi Trainer</span>
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300"> 
-                <a href="/mitra" className="text-sm md:text-base py-2">Mitra</a> 
+                <a href="/mitra" className="text-xs md:text-sm py-2">Mitra</a> 
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300"> 
-                <a href="https://akualita.com/" className="text-sm md:text-base py-2">Pelatihan Korporasi</a> 
+                <a href="https://akualita.com/" className="text-xs md:text-sm py-2">Pelatihan Korporasi</a> 
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300">
                 <a 
                   href="https://akualita.com/webinar-2025/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="border-2 border-[#00ACF8] text-[#00ACF8] text-sm md:text-base px-3 md:px-4 py-1.5 md:py-2 rounded-md hover:bg-[#00ACF8] hover:shadow-md hover:text-white transition duration-300 whitespace-nowrap"
+                  className="border-2 border-[#00ACF8] text-[#00ACF8] text-xs md:text-sm px-3 md:px-4 py-1.5 md:py-2 rounded-md hover:bg-[#00ACF8] hover:shadow-md hover:text-white transition duration-300 whitespace-nowrap"
                 >
                   Kursus Gratis
                 </a>
@@ -181,7 +181,7 @@ export default function Navbar() {
                 <button 
                   type="button" 
                   onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
-                  className="cursor-pointer flex items-center justify-between w-full hover:text-[#00ACF8] focus:outline-none text-base py-2 px-3 rounded-md hover:bg-gray-50 transition-all duration-200"
+                  className="cursor-pointer flex items-center justify-between w-full hover:text-[#00ACF8] focus:outline-none text-sm py-2 px-3 rounded-md hover:bg-gray-50 transition-all duration-200"
                 >
                   Program
                   <svg 
@@ -196,36 +196,36 @@ export default function Navbar() {
                 </button>
                 <ul className={`${isMobileDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden transition-all duration-300 flex-col pl-4 mt-2 space-y-1`}>
                   <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300 py-2 px-3 rounded-md hover:bg-gray-50">
-                    <span className="text-sm sm:text-base">Pelatihan Sertifikasi</span>
+                    <span className="text-xs sm:text-sm">Pelatihan Sertifikasi</span>
                   </li>
                   <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300 py-2 px-3 rounded-md hover:bg-gray-50">
-                    <span className="text-sm sm:text-base">Pelatihan Non-Sertifikasi</span>
+                    <span className="text-xs sm:text-sm">Pelatihan Non-Sertifikasi</span>
                   </li>
                   <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300 py-2 px-3 rounded-md hover:bg-gray-50">
-                    <span className="text-sm sm:text-base">Bootcamp</span>
+                    <span className="text-xs sm:text-sm">Bootcamp</span>
                   </li>
                 </ul>
               </li>
 
               {/* Other Mobile Menu Items */}
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300">
-                <span className="text-base block py-2 px-3 rounded-md hover:bg-gray-50">Tentang Akualita Academy</span>
+                <span className="text-sm block py-2 px-3 rounded-md hover:bg-gray-50">Tentang Akualita Academy</span>
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300">
-                <span className="text-base block py-2 px-3 rounded-md hover:bg-gray-50">Kursus Singkat</span>
+                <span className="text-sm block py-2 px-3 rounded-md hover:bg-gray-50">Menjadi Trainer</span>
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300"> 
-                <a href="/mitra" className="text-base block py-2 px-3 rounded-md hover:bg-gray-50">Mitra</a> 
+                <a href="/mitra" className="text-sm block py-2 px-3 rounded-md hover:bg-gray-50">Mitra</a> 
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300"> 
-                <a href="https://akualita.com/" className="text-base block py-2 px-3 rounded-md hover:bg-gray-50">Pelatihan Korporasi</a> 
+                <a href="https://akualita.com/" className="text-sm block py-2 px-3 rounded-md hover:bg-gray-50">Pelatihan Korporasi</a> 
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300">
                 <a 
                   href="https://akualita.com/webinar-2025/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="border-2 border-[#00ACF8] text-[#00ACF8] text-base px-4 py-2 rounded-md hover:bg-[#00ACF8] hover:shadow-md hover:text-white transition duration-300 block text-center mt-4"
+                  className="border-2 border-[#00ACF8] text-[#00ACF8] text-sm px-4 py-2 rounded-md hover:bg-[#00ACF8] hover:shadow-md hover:text-white transition duration-300 block text-center mt-4"
                 >
                   Kursus Gratis
                 </a>
