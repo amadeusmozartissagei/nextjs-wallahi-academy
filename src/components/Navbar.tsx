@@ -133,7 +133,7 @@ export default function Navbar() {
                 <span className="text-sm md:text-base py-2">Tentang Akualita Academy</span>
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300">
-                <span className="text-sm md:text-base py-2">Menjadi Trainer</span>
+                <a href="/trainer" className="text-sm md:text-base py-2">Menjadi Trainer</a>
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300"> 
                 <a href="/mitra" className="text-sm md:text-base py-2">Mitra</a> 
@@ -212,7 +212,7 @@ export default function Navbar() {
                 <span className="text-base block py-2 px-3 rounded-md hover:bg-gray-50">Tentang Akualita Academy</span>
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300">
-                <span className="text-base block py-2 px-3 rounded-md hover:bg-gray-50">Menjadi Trainer</span>
+                <a href="/trainer" className="text-base block py-2 px-3 rounded-md hover:bg-gray-50">Menjadi Trainer</a>
               </li>
               <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300"> 
                 <a href="/mitra" className="text-base block py-2 px-3 rounded-md hover:bg-gray-50">Mitra</a> 
