@@ -58,6 +58,6 @@ Halaman mitra telah berhasil dikloning dari `php-wallahi-academy` ke `nextjs-wal
 
 ## Catatan
 - Semua link WhatsApp sudah terkonfigurasi: `https://wa.me/+6281127011818`
-- Email support: `affiliate@akualita-academy.com`
+- Email support: `hrga@akualita.com`
 - Styling dan layout sudah responsive untuk mobile dan desktop
 - Semua komponen menggunakan TypeScript

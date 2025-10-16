@@ -97,10 +97,10 @@ export default function MitraFAQ() {
               <p className="text-sm sm:text-base lg:text-lg text-gray-700">
                 Butuh bantuan? Email{' '}
                 <a 
-                  href="mailto:affiliate@akualita-academy.com" 
+                  href="mailto:hrga@akualita.com" 
                   className="text-[#00ACF8] hover:text-[#05E089] font-semibold transition-colors duration-200"
                 >
-                  affiliate@akualita-academy.com
+                  hrga@akualita.com
                 </a>
               </p>
             </div>
