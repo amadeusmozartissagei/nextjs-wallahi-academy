@@ -8,6 +8,12 @@ export default function ContactSection() {
     subject: '',
     message: ''
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -15,13 +21,56 @@ export default function ContactSection() {
       ...prev,
       [name]: value
     }));
+    
+    // Clear status message when user starts typing
+    if (submitStatus.type) {
+      setSubmitStatus({ type: null, message: '' });
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // You can add your form submission logic here
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/send-contact-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Email berhasil dikirim! Tim kami akan segera merespons.'
+        });
+        
+        // Reset form
+        setFormData({
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.error || 'Terjadi kesalahan saat mengirim email. Silakan coba lagi.'
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'Terjadi kesalahan jaringan. Silakan coba lagi.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -37,6 +86,28 @@ export default function ContactSection() {
             </div>
             
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Status Message */}
+              {submitStatus.type && (
+                <div className={`p-4 rounded-xl border ${
+                  submitStatus.type === 'success' 
+                    ? 'bg-green-50 border-green-200 text-green-800' 
+                    : 'bg-red-50 border-red-200 text-red-800'
+                }`}>
+                  <div className="flex items-center gap-3">
+                    {submitStatus.type === 'success' ? (
+                      <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    <span className="text-sm font-medium">{submitStatus.message}</span>
+                  </div>
+                </div>
+              )}
+
               <div>
                 <label className="block text-sm sm:text-base font-medium text-gray-700 mb-2">
                   Email Kamu
@@ -49,6 +120,7 @@ export default function ContactSection() {
                   placeholder="Masukkan email aktif kamu" 
                   className="w-full border border-gray-300 rounded-xl px-4 py-3 sm:py-3.5 focus:outline-none focus:ring-2 focus:ring-[#00ACF8] focus:border-transparent transition-all duration-200 text-sm sm:text-base" 
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               
@@ -64,6 +136,7 @@ export default function ContactSection() {
                   placeholder="Masukkan subjek email ini" 
                   className="w-full border border-gray-300 rounded-xl px-4 py-3 sm:py-3.5 focus:outline-none focus:ring-2 focus:ring-[#00ACF8] focus:border-transparent transition-all duration-200 text-sm sm:text-base" 
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               
@@ -79,17 +152,35 @@ export default function ContactSection() {
                   placeholder="Masukkan pertanyaan kamu" 
                   className="w-full border border-gray-300 rounded-xl px-4 py-3 sm:py-3.5 focus:outline-none focus:ring-2 focus:ring-[#00ACF8] focus:border-transparent transition-all duration-200 text-sm sm:text-base resize-none" 
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               
               <button 
                 type="submit" 
-                className="w-full bg-[#00ACF8] text-white px-6 py-3 sm:py-4 rounded-xl font-semibold flex items-center justify-center gap-2 sm:gap-3 hover:bg-[#0095d9] hover:shadow-lg transform hover:scale-105 transition-all duration-200 text-sm sm:text-base"
+                disabled={isSubmitting}
+                className={`w-full px-6 py-3 sm:py-4 rounded-xl font-semibold flex items-center justify-center gap-2 sm:gap-3 transition-all duration-200 text-sm sm:text-base ${
+                  isSubmitting
+                    ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                    : 'bg-[#00ACF8] text-white hover:bg-[#0095d9] hover:shadow-lg transform hover:scale-105'
+                }`}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                </svg>
-                Kirim Email
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Mengirim...
+                  </>
+                ) : (
+                  <>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                    Kirim Email
+                  </>
+                )}
               </button>
             </form>
           </div>
