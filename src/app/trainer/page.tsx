@@ -570,15 +570,15 @@ export default function TrainerPage() {
                     <li>• Boleh direkam menggunakan handphone tanpa editing</li>
                     <li>• Harus berupa contoh penyampaian materi (bukan video perkenalan)</li>
                     <li>• Upload ke Google Drive dan pastikan link dapat diakses publik</li>
-                    <li>• Set sharing permission ke "Anyone with the link can view"</li>
+                    <li>• Set sharing permission ke &quot;Anyone with the link can view&quot;</li>
                   </ul>
                 </div>
                 <div className="mt-2 p-3 bg-green-50 rounded-md">
                   <h4 className="font-medium text-green-900 mb-2">📝 Cara Upload ke Google Drive:</h4>
                   <ol className="text-sm text-green-800 space-y-1 list-decimal list-inside">
                     <li>Upload video ke Google Drive</li>
-                    <li>Klik kanan pada file → "Share"</li>
-                    <li>Set permission ke "Anyone with the link"</li>
+                    <li>Klik kanan pada file → &quot;Share&quot;</li>
+                    <li>Set permission ke &quot;Anyone with the link&quot;</li>
                     <li>Copy link dan paste di form ini</li>
                   </ol>
                 </div>
