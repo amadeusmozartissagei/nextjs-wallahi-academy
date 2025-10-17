@@ -176,7 +176,7 @@ export async function POST(request: NextRequest) {
             <div class="field">
               <span class="label">Topik Pelatihan:</span>
               <div class="value">
-                ${formData.trainingTopics.map(topic => `<div style="margin: 5px 0; padding: 5px 10px; background-color: #e3f2fd; border-radius: 5px; display: inline-block; margin-right: 10px;">✓ ${topic}</div>`).join('')}
+                ${formData.trainingTopics.map((topic: string) => `<div style="margin: 5px 0; padding: 5px 10px; background-color: #e3f2fd; border-radius: 5px; display: inline-block; margin-right: 10px;">✓ ${topic}</div>`).join('')}
               </div>
             </div>
             <div class="field">
