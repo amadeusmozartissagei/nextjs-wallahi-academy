@@ -1,12 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { writeFile, mkdir } from 'fs/promises';
+import { join } from 'path';
+import { existsSync } from 'fs';
 
 export async function POST(request: NextRequest) {
+  // Declare variables outside try block for proper scope
+  const tempFiles: string[] = [];
+  
   try {
-    const formData = await request.json();
+    // Parse multipart/form-data
+    const formData = await request.formData();
+
+    // Extract form data
+    const fullName = formData.get('fullName') as string;
+    const email = formData.get('email') as string;
+    const phone = formData.get('phone') as string;
+    const address = formData.get('address') as string;
+    const experience = formData.get('experience') as string;
+    const linkedin = formData.get('linkedin') as string;
+    const youtube = formData.get('youtube') as string;
+    const instagram = formData.get('instagram') as string;
+    const facebook = formData.get('facebook') as string;
+    const videoLink = formData.get('videoLink') as string;
+    // const agreement = formData.get('agreement') as string; // Not used in current implementation
+    const trainingTopicsString = formData.get('trainingTopics') as string;
+    
+    // Parse training topics
+    const trainingTopics = JSON.parse(trainingTopicsString || '[]');
+    
+    // Extract files
+    const cvFile = formData.get('cv') as File | null;
+    const certificateFile = formData.get('certificate') as File | null;
+    const syllabusFile = formData.get('syllabus') as File | null;
+    const portfolioFile = formData.get('portfolio') as File | null;
 
     // Validasi input required
-    if (!formData.fullName || !formData.email || !formData.phone || !formData.trainingTopics || formData.trainingTopics.length === 0) {
+    if (!fullName || !email || !phone || !trainingTopics || trainingTopics.length === 0) {
       return NextResponse.json(
         { error: 'Data pribadi wajib diisi lengkap' },
         { status: 400 }
@@ -18,6 +48,81 @@ export async function POST(request: NextRequest) {
       console.error('Environment variables tidak dikonfigurasi');
       return NextResponse.json(
         { error: 'Email service belum dikonfigurasi. Silakan hubungi administrator.' },
+        { status: 500 }
+      );
+    }
+
+    // Create temporary directory for file storage
+    const tempDir = join(process.cwd(), 'temp', 'trainer-files');
+    if (!existsSync(tempDir)) {
+      await mkdir(tempDir, { recursive: true });
+    }
+
+    // Save files temporarily and prepare attachments
+    const attachments: Array<{
+      filename: string;
+      path: string;
+      contentType: string;
+    }> = [];
+
+    try {
+      // Save CV file
+      if (cvFile && cvFile.size > 0) {
+        const cvBuffer = Buffer.from(await cvFile.arrayBuffer());
+        const cvPath = join(tempDir, `cv_${Date.now()}_${cvFile.name}`);
+        await writeFile(cvPath, cvBuffer);
+        attachments.push({
+          filename: `CV_${fullName.replace(/\s+/g, '_')}.pdf`,
+          path: cvPath,
+          contentType: 'application/pdf'
+        });
+        tempFiles.push(cvPath);
+      }
+
+      // Save Certificate file
+      if (certificateFile && certificateFile.size > 0) {
+        const certBuffer = Buffer.from(await certificateFile.arrayBuffer());
+        const certPath = join(tempDir, `cert_${Date.now()}_${certificateFile.name}`);
+        await writeFile(certPath, certBuffer);
+        attachments.push({
+          filename: `Sertifikat_${fullName.replace(/\s+/g, '_')}.pdf`,
+          path: certPath,
+          contentType: 'application/pdf'
+        });
+        tempFiles.push(certPath);
+      }
+
+      // Save Syllabus file
+      if (syllabusFile && syllabusFile.size > 0) {
+        const syllabusBuffer = Buffer.from(await syllabusFile.arrayBuffer());
+        const syllabusPath = join(tempDir, `syllabus_${Date.now()}_${syllabusFile.name}`);
+        await writeFile(syllabusPath, syllabusBuffer);
+        const contentType = syllabusFile.type || 'application/octet-stream';
+        attachments.push({
+          filename: `Silabus_${fullName.replace(/\s+/g, '_')}.${syllabusFile.name.split('.').pop()}`,
+          path: syllabusPath,
+          contentType: contentType
+        });
+        tempFiles.push(syllabusPath);
+      }
+
+      // Save Portfolio file
+      if (portfolioFile && portfolioFile.size > 0) {
+        const portfolioBuffer = Buffer.from(await portfolioFile.arrayBuffer());
+        const portfolioPath = join(tempDir, `portfolio_${Date.now()}_${portfolioFile.name}`);
+        await writeFile(portfolioPath, portfolioBuffer);
+        const contentType = portfolioFile.type || 'application/octet-stream';
+        attachments.push({
+          filename: `Portfolio_${fullName.replace(/\s+/g, '_')}.${portfolioFile.name.split('.').pop()}`,
+          path: portfolioPath,
+          contentType: contentType
+        });
+        tempFiles.push(portfolioPath);
+      }
+    } catch (fileError) {
+      console.error('Error saving files:', fileError);
+      return NextResponse.json(
+        { error: 'Gagal menyimpan file. Silakan coba lagi.' },
         { status: 500 }
       );
     }
@@ -151,23 +256,23 @@ export async function POST(request: NextRequest) {
             <h3>👤 Informasi Pribadi</h3>
             <div class="field">
               <span class="label">Nama Lengkap:</span>
-              <span class="value">${formData.fullName}</span>
+              <span class="value">${fullName}</span>
             </div>
             <div class="field">
               <span class="label">Email:</span>
-              <span class="value">${formData.email}</span>
+              <span class="value">${email}</span>
             </div>
             <div class="field">
               <span class="label">Telepon:</span>
-              <span class="value">${formData.phone}</span>
+              <span class="value">${phone}</span>
             </div>
             <div class="field">
               <span class="label">Alamat:</span>
-              <span class="value">${formData.address || 'Tidak diisi'}</span>
+              <span class="value">${address || 'Tidak diisi'}</span>
             </div>
             <div class="field">
               <span class="label">Pengalaman:</span>
-              <span class="value">${formData.experience} tahun</span>
+              <span class="value">${experience} tahun</span>
             </div>
           </div>
 
@@ -176,12 +281,12 @@ export async function POST(request: NextRequest) {
             <div class="field">
               <span class="label">Topik Pelatihan:</span>
               <div class="value">
-                ${formData.trainingTopics.map((topic: string) => `<div style="margin: 5px 0; padding: 5px 10px; background-color: #e3f2fd; border-radius: 5px; display: inline-block; margin-right: 10px;">✓ ${topic}</div>`).join('')}
+                ${trainingTopics.map((topic: string) => `<div style="margin: 5px 0; padding: 5px 10px; background-color: #e3f2fd; border-radius: 5px; display: inline-block; margin-right: 10px;">✓ ${topic}</div>`).join('')}
               </div>
             </div>
             <div class="field">
               <span class="label">Total Dipilih:</span>
-              <span class="value">${formData.trainingTopics.length} topik pelatihan</span>
+              <span class="value">${trainingTopics.length} topik pelatihan</span>
             </div>
           </div>
 
@@ -189,36 +294,36 @@ export async function POST(request: NextRequest) {
             <h3>📄 Dokumen Pendukung</h3>
             <div class="file-info">
               <strong>✅ CV (PDF):</strong> 
-              ${formData.cv ? 
-                `Telah diupload - ${formData.cv.name} (${(formData.cv.size / 1024).toFixed(1)} KB)` : 
+              ${cvFile && cvFile.size > 0 ? 
+                `Telah diupload - ${cvFile.name} (${(cvFile.size / 1024).toFixed(1)} KB) - <strong>TERLAMPIR</strong>` : 
                 'Belum diupload'
               }
             </div>
             <div class="file-info">
               <strong>✅ Sertifikat (PDF):</strong> 
-              ${formData.certificate ? 
-                `Telah diupload - ${formData.certificate.name} (${(formData.certificate.size / 1024).toFixed(1)} KB)` : 
+              ${certificateFile && certificateFile.size > 0 ? 
+                `Telah diupload - ${certificateFile.name} (${(certificateFile.size / 1024).toFixed(1)} KB) - <strong>TERLAMPIR</strong>` : 
                 'Belum diupload'
               }
             </div>
             <div class="file-info">
               <strong>✅ Silabus:</strong> 
-              ${formData.syllabus ? 
-                `Telah diupload - ${formData.syllabus.name} (${(formData.syllabus.size / 1024).toFixed(1)} KB)` : 
+              ${syllabusFile && syllabusFile.size > 0 ? 
+                `Telah diupload - ${syllabusFile.name} (${(syllabusFile.size / 1024).toFixed(1)} KB) - <strong>TERLAMPIR</strong>` : 
                 'Belum diupload'
               }
             </div>
             <div class="file-info">
               <strong>✅ Portfolio:</strong> 
-              ${formData.portfolio ? 
-                `Telah diupload - ${formData.portfolio.name} (${(formData.portfolio.size / 1024).toFixed(1)} KB)` : 
+              ${portfolioFile && portfolioFile.size > 0 ? 
+                `Telah diupload - ${portfolioFile.name} (${(portfolioFile.size / 1024).toFixed(1)} KB) - <strong>TERLAMPIR</strong>` : 
                 'Belum diupload'
               }
             </div>
             <div class="file-info">
               <strong>🎬 Video Demo:</strong> 
-              ${formData.videoLink ? 
-                `<a href="${formData.videoLink}" target="_blank" style="color: #f97316; text-decoration: none; background-color: #f97316; color: white; padding: 5px 10px; border-radius: 5px;">📹 Lihat Video di Google Drive</a>` : 
+              ${videoLink ? 
+                `<a href="${videoLink}" target="_blank" style="color: #f97316; text-decoration: none; background-color: #f97316; color: white; padding: 5px 10px; border-radius: 5px;">📹 Lihat Video di Google Drive</a>` : 
                 'Belum diupload'
               }
             </div>
@@ -227,10 +332,10 @@ export async function POST(request: NextRequest) {
           <div class="section">
             <h3>🔗 Media Sosial</h3>
             <div class="social-links">
-              ${formData.linkedin ? `<a href="${formData.linkedin}" class="social-link" target="_blank">LinkedIn</a>` : ''}
-              ${formData.youtube ? `<a href="${formData.youtube}" class="social-link" target="_blank">YouTube</a>` : ''}
-              ${formData.instagram ? `<a href="${formData.instagram}" class="social-link" target="_blank">Instagram</a>` : ''}
-              ${formData.facebook ? `<a href="${formData.facebook}" class="social-link" target="_blank">Facebook</a>` : ''}
+              ${linkedin ? `<a href="${linkedin}" class="social-link" target="_blank">LinkedIn</a>` : ''}
+              ${youtube ? `<a href="${youtube}" class="social-link" target="_blank">YouTube</a>` : ''}
+              ${instagram ? `<a href="${instagram}" class="social-link" target="_blank">Instagram</a>` : ''}
+              ${facebook ? `<a href="${facebook}" class="social-link" target="_blank">Facebook</a>` : ''}
             </div>
           </div>
 
@@ -260,20 +365,44 @@ export async function POST(request: NextRequest) {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER,
-      subject: `🧾 Pendaftaran Trainer Baru - ${formData.fullName} | Akualita Academy`,
+      subject: `🧾 Pendaftaran Trainer Baru - ${fullName} | Akualita Academy`,
       html: htmlContent,
+      attachments: attachments, // Add PDF attachments
     };
 
     // Kirim email
     await transporter.sendMail(mailOptions);
 
-    console.log('Trainer registration email sent successfully');
+    // Cleanup temporary files
+    const { unlink } = await import('fs/promises');
+    for (const tempFile of tempFiles) {
+      try {
+        await unlink(tempFile);
+      } catch (cleanupError) {
+        console.warn('Failed to delete temp file:', tempFile, cleanupError);
+      }
+    }
+
+    console.log('Trainer registration email sent successfully with attachments');
     return NextResponse.json({ 
-      message: 'Email pendaftaran trainer berhasil dikirim!' 
+      message: 'Email pendaftaran trainer berhasil dikirim dengan lampiran PDF!' 
     });
 
   } catch (error) {
     console.error('Error sending trainer registration email:', error);
+    
+    // Cleanup temporary files on error
+    if (tempFiles && tempFiles.length > 0) {
+      const { unlink } = await import('fs/promises');
+      for (const tempFile of tempFiles) {
+        try {
+          await unlink(tempFile);
+        } catch (cleanupError) {
+          console.warn('Failed to delete temp file on error cleanup:', tempFile, cleanupError);
+        }
+      }
+    }
+    
     return NextResponse.json(
       { error: 'Terjadi kesalahan saat mengirim email. Silakan coba lagi.' },
       { status: 500 }

@@ -206,37 +206,42 @@ export default function TrainerPage() {
     setSubmitStatus({ type: null, message: '' });
 
     try {
-      // Prepare data for API call, converting File objects to file info
-      const apiData = {
-        ...formData,
-        cv: formData.cv ? {
-          name: formData.cv.name,
-          size: formData.cv.size,
-          type: formData.cv.type
-        } : null,
-        certificate: formData.certificate ? {
-          name: formData.certificate.name,
-          size: formData.certificate.size,
-          type: formData.certificate.type
-        } : null,
-        syllabus: formData.syllabus ? {
-          name: formData.syllabus.name,
-          size: formData.syllabus.size,
-          type: formData.syllabus.type
-        } : null,
-        portfolio: formData.portfolio ? {
-          name: formData.portfolio.name,
-          size: formData.portfolio.size,
-          type: formData.portfolio.type
-        } : null
-      };
+      // Prepare FormData for file uploads
+      const formDataToSend = new FormData();
+      
+      // Add text fields
+      formDataToSend.append('fullName', formData.fullName);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('address', formData.address || '');
+      formDataToSend.append('experience', formData.experience);
+      formDataToSend.append('linkedin', formData.linkedin);
+      formDataToSend.append('youtube', formData.youtube || '');
+      formDataToSend.append('instagram', formData.instagram || '');
+      formDataToSend.append('facebook', formData.facebook || '');
+      formDataToSend.append('videoLink', formData.videoLink);
+      formDataToSend.append('agreement', formData.agreement.toString());
+      
+      // Add training topics as JSON string
+      formDataToSend.append('trainingTopics', JSON.stringify(formData.trainingTopics));
+      
+      // Add files if they exist
+      if (formData.cv) {
+        formDataToSend.append('cv', formData.cv);
+      }
+      if (formData.certificate) {
+        formDataToSend.append('certificate', formData.certificate);
+      }
+      if (formData.syllabus) {
+        formDataToSend.append('syllabus', formData.syllabus);
+      }
+      if (formData.portfolio) {
+        formDataToSend.append('portfolio', formData.portfolio);
+      }
 
       const response = await fetch('/api/send-trainer-email', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(apiData),
+        body: formDataToSend, // No Content-Type header needed for FormData
       });
 
       const result = await response.json();
