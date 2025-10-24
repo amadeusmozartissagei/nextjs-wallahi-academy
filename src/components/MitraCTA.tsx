@@ -6,13 +6,13 @@ export default function MitraCTA() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_4fr] gap-8 items-center">
           {/* Image */}
-          <div className="hidden md:flex justify-start pr-0 md:pr-8">
+          <div className="hidden md:flex justify-start pr-0 md:pr-8 relative">
             <Image 
               src="/images/svg/BB2.png" 
               alt="CTA Mitra" 
-              width={400}
-              height={300}
-              className="w-auto h-full object-contain"
+              width={500}
+              height={400}
+              className="w-auto h-auto object-contain -mt-4 scale-102"
               loading="lazy"
               quality={75}
             />
@@ -35,9 +35,20 @@ export default function MitraCTA() {
                 href="https://wa.me/+6281127011818" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white text-[#05E089] font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded-2xl shadow hover:bg-gray-100 transition"
+                className="bg-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-2xl shadow hover:bg-gray-100 transition"
               >
-                Daftar Sekarang!
+                <span 
+                  style={{
+                    fontFamily: 'Poppins',
+                    fontWeight: '600',
+                    background: 'linear-gradient(90deg, #18ECA0 0%, #04AEFB 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                  }}
+                >
+                  Daftar Sekarang!
+                </span>
               </a>
             </div>
           </div>
