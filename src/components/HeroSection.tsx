@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function HeroSection() {
   return (
     <section 
-      className="w-full min-h-screen text-white flex items-center py-8 md:py-12 px-4 sm:px-6 md:px-16 lg:px-20" 
+      className="w-full min-h-screen text-white flex items-center py-8 md:py-12 px-4 sm:px-6 md:px-16 lg:px-20 2xl:-mt-16" 
       style={{
         backgroundImage: 'url(/images/Bg/ww.png)',
         backgroundSize: 'cover',
