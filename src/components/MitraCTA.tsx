@@ -19,14 +19,14 @@ export default function MitraCTA() {
           </div>
 
           {/* Content */}
-          <div className="flex flex-col space-y-2 sm:space-y-3 text-center md:text-left">
+          <div className="flex flex-col space-y-2 sm:space-y-3 text-center">
             <h2 className="text-4xl sm:text-2xl md:text-3xl font-bold text-white md:hidden block">
               Mulai langkahmu Bersama Kami!
             </h2>
             <h2 className="text-2xl sm:text-2xl md:text-3xl font-bold text-white md:block hidden">
               Mulai langkahmu sekarang bersama Akualita Academy Affiliate!
             </h2>
-            <p className="text-white text-base sm:text-lg leading-relaxed md:mr-20 mb-10 pb-2">
+            <p className="text-white text-base sm:text-lg leading-relaxed mb-10 pb-2">
               Bergabunglah dengan Akualita Academy Affiliate dan jadilah bagian dari komunitas penuh peluang! 
               Dapatkan penghasilan tambahan yang fleksibel dan berkelanjutan sambil berbagi informasi bermanfaat.
             </p>
