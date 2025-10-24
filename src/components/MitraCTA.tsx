@@ -6,7 +6,7 @@ export default function MitraCTA() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_4fr] gap-8 items-center">
           {/* Image */}
-          <div className="hidden md:flex justify-center pr-0 md:pr-8">
+          <div className="hidden md:flex justify-start pr-0 md:pr-8">
             <Image 
               src="/images/svg/BB2.png" 
               alt="CTA Mitra" 
