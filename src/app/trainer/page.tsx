@@ -301,30 +301,6 @@ export default function TrainerPage() {
           </p>
         </div>
 
-        {/* Status Message */}
-        {submitStatus.type && (
-          <div className={`mb-6 p-4 rounded-lg flex items-center space-x-3 ${
-            submitStatus.type === 'success' 
-              ? 'bg-green-50 border border-green-200 text-green-800' 
-              : 'bg-red-50 border border-red-200 text-red-800'
-          }`}>
-            <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-              submitStatus.type === 'success' ? 'bg-green-100' : 'bg-red-100'
-            }`}>
-              {submitStatus.type === 'success' ? (
-                <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              ) : (
-                <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              )}
-            </div>
-            <p className="font-medium">{submitStatus.message}</p>
-          </div>
-        )}
-
         <form onSubmit={handleSubmit} className={`space-y-8 ${isSubmitting ? 'pointer-events-none opacity-75' : ''}`}>
           {/* Personal Information */}
           <div className="bg-white rounded-lg shadow-md p-6">
@@ -711,6 +687,31 @@ export default function TrainerPage() {
                 '🟠 DAFTAR SEKARANG'
               )}
             </button>
+            
+            {/* Status Message - Dipindahkan ke dekat tombol */}
+            {submitStatus.type && (
+              <div className={`mt-4 p-4 rounded-lg flex items-center justify-center space-x-3 ${
+                submitStatus.type === 'success' 
+                  ? 'bg-green-50 border border-green-200 text-green-800' 
+                  : 'bg-red-50 border border-red-200 text-red-800'
+              }`}>
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                  submitStatus.type === 'success' ? 'bg-green-100' : 'bg-red-100'
+                }`}>
+                  {submitStatus.type === 'success' ? (
+                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  )}
+                </div>
+                <p className="font-medium">{submitStatus.message}</p>
+              </div>
+            )}
+            
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
               Ayo berbagi pengetahuan, bangun karier, dan jadilah bagian dari gerakan kompetensi K3L Indonesia bersama Akualita Academy.
             </p>

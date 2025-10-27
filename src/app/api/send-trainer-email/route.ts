@@ -43,11 +43,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Cek apakah environment variables sudah dikonfigurasi
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.error('Environment variables tidak dikonfigurasi');
+    // Cek apakah environment variables sudah dikonfigurasi untuk Trainer
+    if (!process.env.TRAINER_EMAIL_USER || !process.env.TRAINER_EMAIL_PASS) {
+      console.error('Environment variables untuk Trainer tidak dikonfigurasi');
       return NextResponse.json(
-        { error: 'Email service belum dikonfigurasi. Silakan hubungi administrator.' },
+        { error: 'Email service Trainer belum dikonfigurasi. Silakan hubungi administrator.' },
         { status: 500 }
       );
     }
@@ -127,12 +127,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Konfigurasi transporter Nodemailer
+    // Konfigurasi transporter Nodemailer untuk Trainer
+    // Menggunakan email khusus untuk trainer registration
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.TRAINER_EMAIL_USER, // Email pengirim untuk Trainer
+        pass: process.env.TRAINER_EMAIL_PASS, // App password dari Gmail untuk Trainer
       },
     });
 
@@ -215,12 +216,20 @@ export async function POST(request: NextRequest) {
             margin-top: 10px;
           }
           .social-link {
-            background-color: #0077b5;
-            color: white;
-            padding: 5px 10px;
+            background-color: #f97316;
+            color: white !important;
+            padding: 8px 12px;
             border-radius: 5px;
-            text-decoration: none;
+            text-decoration: none !important;
             font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 2px;
+            border: 1px solid #f97316;
+          }
+          .social-link:hover {
+            background-color: #ea580c;
+            color: white !important;
           }
           .footer {
             text-align: center;
@@ -363,8 +372,8 @@ export async function POST(request: NextRequest) {
 
     // Konfigurasi email
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER,
+      from: process.env.TRAINER_EMAIL_USER, // Email pengirim untuk Trainer
+      to: 'hrga@akualita.com', // Email penerima untuk trainer registration
       subject: `🧾 Pendaftaran Trainer Baru - ${fullName} | Akualita Academy`,
       html: htmlContent,
       attachments: attachments, // Add PDF attachments

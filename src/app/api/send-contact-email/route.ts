@@ -13,30 +13,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Cek apakah environment variables sudah dikonfigurasi
+    // Cek apakah environment variables sudah dikonfigurasi untuk QNA
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.error('Environment variables tidak dikonfigurasi');
+      console.error('Environment variables untuk QNA tidak dikonfigurasi');
       return NextResponse.json(
-        { error: 'Email service belum dikonfigurasi. Silakan hubungi administrator.' },
+        { error: 'Email service QNA belum dikonfigurasi. Silakan hubungi administrator.' },
         { status: 500 }
       );
     }
 
-    // Konfigurasi transporter Nodemailer
-    // Untuk development, kita akan menggunakan Gmail SMTP
-    // Pastikan untuk menggunakan environment variables untuk keamanan
+    // Konfigurasi transporter Nodemailer untuk QNA
+    // Menggunakan email khusus untuk QNA di landing page
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER, // Email pengirim
-        pass: process.env.EMAIL_PASS, // App password dari Gmail
+        user: process.env.EMAIL_USER, // Email pengirim untuk QNA
+        pass: process.env.EMAIL_PASS, // App password dari Gmail untuk QNA
       },
     });
 
     // Konfigurasi email
     const mailOptions = {
-      from: process.env.EMAIL_USER, // Email pengirim
-      to: process.env.RECIPIENT_EMAIL || 'info@akualita.com', // Email penerima
+      from: process.env.EMAIL_USER, // Email pengirim untuk QNA
+      to: 'academy@akualita.com', // Email penerima untuk QNA dari landing page
       replyTo: email, // Email yang bisa di-reply
       subject: `[AKUALITA Academy] ${subject}`,
       html: `
