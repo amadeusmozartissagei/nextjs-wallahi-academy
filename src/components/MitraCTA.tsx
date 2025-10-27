@@ -2,7 +2,29 @@ import Image from 'next/image';
 
 export default function MitraCTA() {
   return (
-    <section className="w-full bg-gradient-to-br from-[#05E089] to-[#00ACF8] py-10 md:py-0 pb-16 md:pb-5">
+    <section className="w-full bg-gradient-to-br from-[#05E089] to-[#00ACF8] py-10 md:py-0 pb-16 md:pb-5 relative">
+      {/* Decorative SVG - Bottom Right */}
+      <div className="absolute bottom-4 right-0 z-10" style={{ transform: 'translateY(25%)' }}>
+        <div className="flex gap-2">
+          <Image 
+            src="/images/svg/aset-mitra2.svg" 
+            alt="Decorative Element 2" 
+            width={100}
+            height={100}
+            className="w-20 h-20 md:w-28 md:h-28 opacity-80"
+            loading="lazy"
+          />
+          <Image 
+            src="/images/svg/aset-mitra1.svg" 
+            alt="Decorative Element 1" 
+            width={100}
+            height={100}
+            className="w-20 h-20 md:w-28 md:h-28 opacity-80"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_4fr] gap-8 items-center">
           {/* Image */}
