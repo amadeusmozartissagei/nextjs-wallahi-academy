@@ -20,13 +20,13 @@ export default function MitraCTA() {
 
           {/* Content */}
           <div className="flex flex-col space-y-2 sm:space-y-3 text-center">
-            <h2 className="text-4xl sm:text-2xl md:text-3xl font-bold text-white md:hidden block" style={{ fontFamily: 'Poppins' }}>
+            <h2 className="text-4xl sm:text-2xl md:text-3xl font-bold text-white md:hidden block font-poppins">
               Mulai langkahmu Bersama Kami!
             </h2>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white md:block hidden" style={{ fontFamily: 'Poppins' }}>
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white md:block hidden font-poppins">
               Mulai langkahmu sekarang bersama Akualita Academy Affiliate!
             </h2>
-            <p className="text-white text-base sm:text-lg leading-relaxed mb-10 pb-2" style={{ fontFamily: 'Poppins' }}>
+            <p className="text-white text-base sm:text-lg leading-relaxed mb-10 pb-2 font-poppins">
               Bergabunglah dengan Akualita Academy Affiliate dan jadilah bagian dari komunitas penuh peluang! 
               Dapatkan penghasilan tambahan yang fleksibel dan berkelanjutan sambil berbagi informasi bermanfaat.
             </p>
@@ -38,9 +38,8 @@ export default function MitraCTA() {
                 className="bg-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-2xl shadow hover:bg-gray-100 transition"
               >
                 <span 
+                  className="font-poppins font-semibold"
                   style={{
-                    fontFamily: 'Poppins',
-                    fontWeight: '600',
                     background: 'linear-gradient(90deg, #18ECA0 0%, #04AEFB 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
