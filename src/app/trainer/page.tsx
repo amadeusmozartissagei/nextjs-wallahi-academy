@@ -74,6 +74,8 @@ export default function TrainerPage() {
 
   const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadingFiles, setUploadingFiles] = useState<{[key: string]: boolean}>({});
+  const [uploadedFiles, setUploadedFiles] = useState<{[key: string]: boolean}>({});
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
     message: string;
@@ -111,6 +113,33 @@ export default function TrainerPage() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
     const file = e.target.files?.[0] || null;
+    
+    // Validasi ukuran file (1MB = 1024 * 1024 bytes)
+    const MAX_FILE_SIZE = 1 * 1024 * 1024; // 1MB
+    
+    if (file && file.size > MAX_FILE_SIZE) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: `File terlalu besar. Maksimal ukuran file adalah 1MB. Ukuran file Anda: ${(file.size / (1024 * 1024)).toFixed(2)}MB`
+      }));
+      return;
+    }
+    
+    // Simulasi upload dengan animasi
+    if (file) {
+      setUploadingFiles(prev => ({ ...prev, [name]: true }));
+      
+      // Simulasi delay upload (1-2 detik)
+      setTimeout(() => {
+        setUploadingFiles(prev => ({ ...prev, [name]: false }));
+        setUploadedFiles(prev => ({ ...prev, [name]: true }));
+        
+        // Hapus notifikasi sukses setelah 3 detik
+        setTimeout(() => {
+          setUploadedFiles(prev => ({ ...prev, [name]: false }));
+        }, 3000);
+      }, Math.random() * 1000 + 1000); // 1-2 detik
+    }
     
     setFormData(prev => ({
       ...prev,
@@ -381,16 +410,16 @@ export default function TrainerPage() {
 
       {/* Form Section */}
       <div className="py-16 bg-gray-50" style={{ marginTop: '200px' }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl font-bold text-gray-900 mb-6">
-              🧾 Daftar Jadi Trainer Akualita Academy
-            </h1>
+            🧾 Daftar Jadi Trainer Akualita Academy
+          </h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Isi formulir pendaftaran dan lengkapi dokumen berikut untuk menjadi bagian dari tim trainer profesional kami.
-            </p>
-          </div>
+            Isi formulir pendaftaran dan lengkapi dokumen berikut untuk menjadi bagian dari tim trainer profesional kami.
+          </p>
+        </div>
 
         <form onSubmit={handleSubmit} className={`space-y-12 ${isSubmitting ? 'pointer-events-none opacity-75' : ''}`}>
           {/* Personal Information */}
@@ -493,15 +522,43 @@ export default function TrainerPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Curriculum Vitae (PDF) *
                 </label>
-                <input
-                  type="file"
-                  name="cv"
-                  onChange={handleFileChange}
-                  accept=".pdf"
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.cv ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                />
+                <div className="relative">
+                  <input
+                    type="file"
+                    name="cv"
+                    onChange={handleFileChange}
+                    accept=".pdf"
+                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      errors.cv ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                  />
+                  
+                  {/* Upload Animation */}
+                  {uploadingFiles.cv && (
+                    <div className="absolute inset-0 bg-blue-50 bg-opacity-90 rounded-md flex items-center justify-center">
+                      <div className="flex items-center space-x-2">
+                        <svg className="animate-spin h-4 w-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span className="text-sm text-blue-600 font-medium">Mengupload...</span>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Success Notification */}
+                  {uploadedFiles.cv && (
+                    <div className="absolute inset-0 bg-green-50 bg-opacity-90 rounded-md flex items-center justify-center">
+                      <div className="flex items-center space-x-2">
+                        <svg className="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-sm text-green-600 font-medium">File berhasil diupload!</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <p className="text-sm text-gray-500 mt-1">Format: PDF (maksimal 1MB)</p>
                 {errors.cv && <p className="text-red-500 text-sm mt-1">{errors.cv}</p>}
               </div>
 
@@ -510,15 +567,43 @@ export default function TrainerPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Sertifikat Keahlian / Kompetensi (PDF) *
                 </label>
-                <input
-                  type="file"
-                  name="certificate"
-                  onChange={handleFileChange}
-                  accept=".pdf"
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.certificate ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                />
+                <div className="relative">
+                  <input
+                    type="file"
+                    name="certificate"
+                    onChange={handleFileChange}
+                    accept=".pdf"
+                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      errors.certificate ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                  />
+                  
+                  {/* Upload Animation */}
+                  {uploadingFiles.certificate && (
+                    <div className="absolute inset-0 bg-blue-50 bg-opacity-90 rounded-md flex items-center justify-center">
+                      <div className="flex items-center space-x-2">
+                        <svg className="animate-spin h-4 w-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span className="text-sm text-blue-600 font-medium">Mengupload...</span>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Success Notification */}
+                  {uploadedFiles.certificate && (
+                    <div className="absolute inset-0 bg-green-50 bg-opacity-90 rounded-md flex items-center justify-center">
+                      <div className="flex items-center space-x-2">
+                        <svg className="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-sm text-green-600 font-medium">File berhasil diupload!</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <p className="text-sm text-gray-500 mt-1">Format: PDF (maksimal 1MB)</p>
                 {errors.certificate && <p className="text-red-500 text-sm mt-1">{errors.certificate}</p>}
               </div>
 
@@ -589,34 +674,88 @@ export default function TrainerPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Silabus Pelatihan (template tersedia) *
                 </label>
-                <input
-                  type="file"
-                  name="syllabus"
-                  onChange={handleFileChange}
-                  accept=".pdf,.doc,.docx"
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.syllabus ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                />
-                <p className="text-sm text-gray-500 mt-1">Format: PDF, DOC, atau DOCX</p>
+                <div className="relative">
+                  <input
+                    type="file"
+                    name="syllabus"
+                    onChange={handleFileChange}
+                    accept=".pdf,.doc,.docx"
+                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      errors.syllabus ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                  />
+                  
+                  {/* Upload Animation */}
+                  {uploadingFiles.syllabus && (
+                    <div className="absolute inset-0 bg-blue-50 bg-opacity-90 rounded-md flex items-center justify-center">
+                      <div className="flex items-center space-x-2">
+                        <svg className="animate-spin h-4 w-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span className="text-sm text-blue-600 font-medium">Mengupload...</span>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Success Notification */}
+                  {uploadedFiles.syllabus && (
+                    <div className="absolute inset-0 bg-green-50 bg-opacity-90 rounded-md flex items-center justify-center">
+                      <div className="flex items-center space-x-2">
+                        <svg className="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-sm text-green-600 font-medium">File berhasil diupload!</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <p className="text-sm text-gray-500 mt-1">Format: PDF, DOC, atau DOCX (maksimal 1MB)</p>
                 {errors.syllabus && <p className="text-red-500 text-sm mt-1">{errors.syllabus}</p>}
               </div>
 
               {/* Portfolio */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Portfolio Singkat (maks. 2 MB) *
+                  Portfolio Singkat *
                 </label>
-                <input
-                  type="file"
-                  name="portfolio"
-                  onChange={handleFileChange}
-                  accept=".pdf,.doc,.docx"
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.portfolio ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                />
-                <p className="text-sm text-gray-500 mt-1">Format: PDF, DOC, atau DOCX (maksimal 2 MB)</p>
+                <div className="relative">
+                  <input
+                    type="file"
+                    name="portfolio"
+                    onChange={handleFileChange}
+                    accept=".pdf,.doc,.docx"
+                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      errors.portfolio ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                  />
+                  
+                  {/* Upload Animation */}
+                  {uploadingFiles.portfolio && (
+                    <div className="absolute inset-0 bg-blue-50 bg-opacity-90 rounded-md flex items-center justify-center">
+                      <div className="flex items-center space-x-2">
+                        <svg className="animate-spin h-4 w-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span className="text-sm text-blue-600 font-medium">Mengupload...</span>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Success Notification */}
+                  {uploadedFiles.portfolio && (
+                    <div className="absolute inset-0 bg-green-50 bg-opacity-90 rounded-md flex items-center justify-center">
+                      <div className="flex items-center space-x-2">
+                        <svg className="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-sm text-green-600 font-medium">File berhasil diupload!</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <p className="text-sm text-gray-500 mt-1">Format: PDF, DOC, atau DOCX (maksimal 1MB)</p>
                 {errors.portfolio && <p className="text-red-500 text-sm mt-1">{errors.portfolio}</p>}
               </div>
 
