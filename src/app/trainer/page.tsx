@@ -289,21 +289,108 @@ export default function TrainerPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            🧾 Daftar Jadi Trainer Akualita Academy
-          </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Isi formulir pendaftaran dan lengkapi dokumen berikut untuk menjadi bagian dari tim trainer profesional kami.
-          </p>
-        </div>
+    <main className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <div 
+        className="relative w-full"
+        style={{
+          height: '374px',
+          background: 'linear-gradient(180deg, #00C0E8 20.37%, #18ECA0 159.12%)'
+        }}
+      >
+        {/* Container untuk konten */}
+        <div className="max-w-7xl mx-auto h-full relative overflow-visible">
+          {/* Trainer Image */}
+          <div className="absolute left-0 z-10" style={{ top: '50%' }}>
+            <img
+              src="/trainer1.png"
+              alt="Trainer Akualita Academy"
+              className="w-auto h-[450px] sm:h-[500px] lg:h-[550px] object-contain"
+              style={{
+                transform: 'translateY(-30%)'
+              }}
+            />
+          </div>
+          
+          {/* Content Area */}
+          <div className="absolute right-4 sm:right-8 lg:right-9 top-8 lg:top-8 w-full sm:w-auto z-10 px-4 sm:px-6 lg:px-8">
+            {/* Title */}
+            <h1 
+              className="text-white font-semibold mb-6"
+              style={{
+                fontFamily: 'var(--font-poppins), sans-serif',
+                fontSize: 'clamp(24px, 4vw, 36px)',
+                lineHeight: '1.2',
+                maxWidth: '740px',
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+              }}
+            >
+              Mari berkontribusi dalam peningkatan kualitas SDM Indonesia
+            </h1>
 
-        <form onSubmit={handleSubmit} className={`space-y-8 ${isSubmitting ? 'pointer-events-none opacity-75' : ''}`}>
+            {/* Description Text */}
+            <p
+              className="text-white mb-8"
+              style={{
+                fontFamily: 'var(--font-poppins), sans-serif',
+                fontSize: '16px',
+                lineHeight: '24px',
+                textAlign: 'justify',
+                maxWidth: '718px'
+              }}
+            >
+              Bersama Akualita Academy, kamu dapat berbagi keahlian, menginspirasi banyak orang, dan memperluas dampak profesionalmu dalam membangun budaya keselamatan, meningkatkan kesehatan kerja, serta menjaga kelestarian lingkungan berkelanjutan di setiap lini industri Indonesia.
+            </p>
+
+            {/* Button */}
+            <button
+              className="bg-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              style={{
+                fontFamily: 'var(--font-poppins), sans-serif',
+                fontSize: '14px',
+                fontWeight: '500',
+                boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+                position: 'relative'
+              }}
+              onClick={() => {
+                // Scroll to form section
+                const formSection = document.querySelector('form');
+                if (formSection) {
+                  formSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              <span
+                style={{
+                  background: 'linear-gradient(90deg, #00C0E8 0%, #0DD8C1 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
+                }}
+              >
+                Daftar Sekarang
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Form Section */}
+      <div className="py-16 bg-gray-50" style={{ marginTop: '200px' }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-bold text-gray-900 mb-6">
+              🧾 Daftar Jadi Trainer Akualita Academy
+            </h1>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Isi formulir pendaftaran dan lengkapi dokumen berikut untuk menjadi bagian dari tim trainer profesional kami.
+            </p>
+          </div>
+
+        <form onSubmit={handleSubmit} className={`space-y-12 ${isSubmitting ? 'pointer-events-none opacity-75' : ''}`}>
           {/* Personal Information */}
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">Informasi Pribadi</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -393,7 +480,7 @@ export default function TrainerPage() {
           </div>
 
           {/* Documents Section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">Dokumen Pendukung</h2>
             
             <div className="space-y-6">
@@ -569,7 +656,7 @@ export default function TrainerPage() {
           </div>
 
           {/* Social Media Section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">🔗 Akun Media Sosial</h2>
             <p className="text-gray-600 mb-6">Cantumkan profil profesional Anda untuk verifikasi:</p>
             
@@ -636,7 +723,7 @@ export default function TrainerPage() {
           </div>
 
           {/* Agreement Section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">✅ Pernyataan Pendaftar</h2>
             <div className="space-y-4">
               <p className="text-gray-700">Dengan mengirim formulir ini, saya menyatakan bahwa:</p>
@@ -665,15 +752,15 @@ export default function TrainerPage() {
           </div>
 
           {/* CTA Button */}
-          <div className="text-center">
+          <div className="text-center pt-8">
             <button
               type="submit"
               disabled={isSubmitting}
               className={`${
                 isSubmitting 
                   ? 'bg-gray-400 cursor-not-allowed' 
-                  : 'bg-orange-500 hover:bg-orange-600 transform hover:scale-105'
-              } text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300 shadow-lg`}
+                  : 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transform hover:scale-105'
+              } text-white font-bold py-4 px-12 rounded-full text-lg transition-all duration-300 shadow-xl hover:shadow-2xl`}
             >
               {isSubmitting ? (
                 <div className="flex items-center space-x-2">
@@ -688,9 +775,9 @@ export default function TrainerPage() {
               )}
             </button>
             
-            {/* Status Message - Dipindahkan ke dekat tombol */}
+            {/* Status Message */}
             {submitStatus.type && (
-              <div className={`mt-4 p-4 rounded-lg flex items-center justify-center space-x-3 ${
+              <div className={`mt-8 p-6 rounded-xl flex items-center justify-center space-x-3 ${
                 submitStatus.type === 'success' 
                   ? 'bg-green-50 border border-green-200 text-green-800' 
                   : 'bg-red-50 border border-red-200 text-red-800'
@@ -712,11 +799,12 @@ export default function TrainerPage() {
               </div>
             )}
             
-            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            <p className="mt-8 text-gray-600 max-w-2xl mx-auto text-center leading-relaxed">
               Ayo berbagi pengetahuan, bangun karier, dan jadilah bagian dari gerakan kompetensi K3L Indonesia bersama Akualita Academy.
             </p>
           </div>
         </form>
+        </div>
       </div>
     </main>
   );

@@ -24,7 +24,12 @@ export default function MitraHero() {
             <div className="w-full lg:w-2/3 xl:w-1/2 text-center lg:text-left space-y-4 lg:space-y-6">
               {/* Main Heading */}
               <div className="space-y-3 lg:space-y-4">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight drop-shadow-lg">
+                <h1 
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight"
+                  style={{
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+                  }}
+                >
                   Ayo, jadi <span className="bg-[#00ACF8] text-[#FFFFFF] inline-block px-3 py-2 rounded-lg mt-2 drop-shadow-md">mitra</span> Akualita Academy!
                 </h1>
                 
