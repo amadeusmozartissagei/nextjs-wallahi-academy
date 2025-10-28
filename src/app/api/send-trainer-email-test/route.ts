@@ -1,13 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
-import { existsSync } from 'fs';
 
 export async function POST(request: NextRequest) {
-  // Declare variables outside try block for proper scope
-  const tempFiles: string[] = [];
-  
   try {
     // Parse multipart/form-data
     const formData = await request.formData();
@@ -23,17 +17,23 @@ export async function POST(request: NextRequest) {
     const instagram = formData.get('instagram') as string;
     const facebook = formData.get('facebook') as string;
     const videoLink = formData.get('videoLink') as string;
-    // const agreement = formData.get('agreement') as string; // Not used in current implementation
     const trainingTopicsString = formData.get('trainingTopics') as string;
     
     // Parse training topics
     const trainingTopics = JSON.parse(trainingTopicsString || '[]');
-    
-    // Extract files
-    const cvFile = formData.get('cv') as File | null;
-    const certificateFile = formData.get('certificate') as File | null;
-    const syllabusFile = formData.get('syllabus') as File | null;
-    const portfolioFile = formData.get('portfolio') as File | null;
+
+    // Debug logging
+    console.log('Environment check:', {
+      TRAINER_EMAIL_USER: !!process.env.TRAINER_EMAIL_USER,
+      TRAINER_EMAIL_PASS: !!process.env.TRAINER_EMAIL_PASS
+    });
+
+    console.log('Form data received:', {
+      fullName: !!fullName,
+      email: !!email,
+      phone: !!phone,
+      trainingTopics: trainingTopics.length
+    });
 
     // Validasi input required
     if (!fullName || !email || !phone || !trainingTopics || trainingTopics.length === 0) {
@@ -52,93 +52,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create temporary directory for file storage
-    // Use /tmp directory which is available in Vercel serverless environment
-    const tempDir = '/tmp/trainer-files';
-    if (!existsSync(tempDir)) {
-      await mkdir(tempDir, { recursive: true });
-    }
-
-    // Save files temporarily and prepare attachments
-    const attachments: Array<{
-      filename: string;
-      path: string;
-      contentType: string;
-    }> = [];
-
-    try {
-      // Save CV file
-      if (cvFile && cvFile.size > 0) {
-        const cvBuffer = Buffer.from(await cvFile.arrayBuffer());
-        const cvPath = join(tempDir, `cv_${Date.now()}_${cvFile.name}`);
-        await writeFile(cvPath, cvBuffer);
-        attachments.push({
-          filename: `CV_${fullName.replace(/\s+/g, '_')}.pdf`,
-          path: cvPath,
-          contentType: 'application/pdf'
-        });
-        tempFiles.push(cvPath);
-      }
-
-      // Save Certificate file
-      if (certificateFile && certificateFile.size > 0) {
-        const certBuffer = Buffer.from(await certificateFile.arrayBuffer());
-        const certPath = join(tempDir, `cert_${Date.now()}_${certificateFile.name}`);
-        await writeFile(certPath, certBuffer);
-        attachments.push({
-          filename: `Sertifikat_${fullName.replace(/\s+/g, '_')}.pdf`,
-          path: certPath,
-          contentType: 'application/pdf'
-        });
-        tempFiles.push(certPath);
-      }
-
-      // Save Syllabus file
-      if (syllabusFile && syllabusFile.size > 0) {
-        const syllabusBuffer = Buffer.from(await syllabusFile.arrayBuffer());
-        const syllabusPath = join(tempDir, `syllabus_${Date.now()}_${syllabusFile.name}`);
-        await writeFile(syllabusPath, syllabusBuffer);
-        const contentType = syllabusFile.type || 'application/octet-stream';
-        attachments.push({
-          filename: `Silabus_${fullName.replace(/\s+/g, '_')}.${syllabusFile.name.split('.').pop()}`,
-          path: syllabusPath,
-          contentType: contentType
-        });
-        tempFiles.push(syllabusPath);
-      }
-
-      // Save Portfolio file
-      if (portfolioFile && portfolioFile.size > 0) {
-        const portfolioBuffer = Buffer.from(await portfolioFile.arrayBuffer());
-        const portfolioPath = join(tempDir, `portfolio_${Date.now()}_${portfolioFile.name}`);
-        await writeFile(portfolioPath, portfolioBuffer);
-        const contentType = portfolioFile.type || 'application/octet-stream';
-        attachments.push({
-          filename: `Portfolio_${fullName.replace(/\s+/g, '_')}.${portfolioFile.name.split('.').pop()}`,
-          path: portfolioPath,
-          contentType: contentType
-        });
-        tempFiles.push(portfolioPath);
-      }
-    } catch (fileError) {
-      console.error('Error saving files:', fileError);
-      return NextResponse.json(
-        { error: 'Gagal menyimpan file. Silakan coba lagi.' },
-        { status: 500 }
-      );
-    }
-
     // Konfigurasi transporter Nodemailer untuk Trainer
-    // Menggunakan email khusus untuk trainer registration
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.TRAINER_EMAIL_USER, // Email pengirim untuk Trainer
-        pass: process.env.TRAINER_EMAIL_PASS, // App password dari Gmail untuk Trainer
+        user: process.env.TRAINER_EMAIL_USER,
+        pass: process.env.TRAINER_EMAIL_PASS,
       },
     });
 
-    // Template email untuk trainer registration
+    // Template email sederhana untuk testing
     const htmlContent = `
       <!DOCTYPE html>
       <html>
@@ -203,13 +126,6 @@ export async function POST(request: NextRequest) {
           .value {
             color: #212529;
           }
-          .file-info {
-            background-color: #e3f2fd;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 5px 0;
-            border-left: 3px solid #2196f3;
-          }
           .social-links {
             display: flex;
             flex-wrap: wrap;
@@ -227,10 +143,6 @@ export async function POST(request: NextRequest) {
             display: inline-block;
             margin: 2px;
             border: 1px solid #f97316;
-          }
-          .social-link:hover {
-            background-color: #ea580c;
-            color: white !important;
           }
           .footer {
             text-align: center;
@@ -253,13 +165,13 @@ export async function POST(request: NextRequest) {
       <body>
         <div class="container">
           <div class="header">
-            <h1>🧾 Pendaftaran Trainer Baru</h1>
+            <h1>🧾 Pendaftaran Trainer Baru (TEST)</h1>
             <p>Akualita Academy</p>
           </div>
 
           <div class="urgent">
             <strong>⚠️ TINDAKAN SEGERA DIPERLUKAN:</strong><br>
-            Calon trainer telah mengisi formulir pendaftaran. Silakan review dokumen dan jadwalkan interview.
+            Calon trainer telah mengisi formulir pendaftaran. Silakan review data dan jadwalkan interview.
           </div>
 
           <div class="section">
@@ -301,45 +213,6 @@ export async function POST(request: NextRequest) {
           </div>
 
           <div class="section">
-            <h3>📄 Dokumen Pendukung</h3>
-            <div class="file-info">
-              <strong>✅ CV (PDF):</strong> 
-              ${cvFile && cvFile.size > 0 ? 
-                `Telah diupload - ${cvFile.name} (${(cvFile.size / 1024).toFixed(1)} KB) - <strong>TERLAMPIR</strong>` : 
-                'Belum diupload'
-              }
-            </div>
-            <div class="file-info">
-              <strong>✅ Sertifikat (PDF):</strong> 
-              ${certificateFile && certificateFile.size > 0 ? 
-                `Telah diupload - ${certificateFile.name} (${(certificateFile.size / 1024).toFixed(1)} KB) - <strong>TERLAMPIR</strong>` : 
-                'Belum diupload'
-              }
-            </div>
-            <div class="file-info">
-              <strong>✅ Silabus:</strong> 
-              ${syllabusFile && syllabusFile.size > 0 ? 
-                `Telah diupload - ${syllabusFile.name} (${(syllabusFile.size / 1024).toFixed(1)} KB) - <strong>TERLAMPIR</strong>` : 
-                'Belum diupload'
-              }
-            </div>
-            <div class="file-info">
-              <strong>✅ Portfolio:</strong> 
-              ${portfolioFile && portfolioFile.size > 0 ? 
-                `Telah diupload - ${portfolioFile.name} (${(portfolioFile.size / 1024).toFixed(1)} KB) - <strong>TERLAMPIR</strong>` : 
-                'Belum diupload'
-              }
-            </div>
-            <div class="file-info">
-              <strong>🎬 Video Demo:</strong> 
-              ${videoLink ? 
-                `<a href="${videoLink}" target="_blank" style="color: #f97316; text-decoration: none; background-color: #f97316; color: white; padding: 5px 10px; border-radius: 5px;">📹 Lihat Video di Google Drive</a>` : 
-                'Belum diupload'
-              }
-            </div>
-          </div>
-
-          <div class="section">
             <h3>🔗 Media Sosial</h3>
             <div class="social-links">
               ${linkedin ? `<a href="${linkedin}" class="social-link" target="_blank">LinkedIn</a>` : ''}
@@ -350,13 +223,26 @@ export async function POST(request: NextRequest) {
           </div>
 
           <div class="section">
+            <h3>🎬 Video Demo</h3>
+            <div class="field">
+              <span class="label">Link Video:</span>
+              <span class="value">
+                ${videoLink ? 
+                  `<a href="${videoLink}" target="_blank" style="color: #f97316; text-decoration: none;">📹 Lihat Video Demo</a>` : 
+                  'Belum diupload'
+                }
+              </span>
+            </div>
+          </div>
+
+          <div class="section">
             <h3>✅ Pernyataan Pendaftar</h3>
             <p>Calon trainer telah menyetujui pernyataan pendaftaran dan bersedia dihubungi untuk proses seleksi selanjutnya.</p>
           </div>
 
           <div class="footer">
             <p><strong>Akualita Academy</strong><br>
-            Email ini dikirim otomatis dari sistem pendaftaran trainer.<br>
+            Email ini dikirim otomatis dari sistem pendaftaran trainer (TEST VERSION).<br>
             Timestamp: ${new Date().toLocaleString('id-ID', { 
               timeZone: 'Asia/Jakarta',
               year: 'numeric',
@@ -373,45 +259,22 @@ export async function POST(request: NextRequest) {
 
     // Konfigurasi email
     const mailOptions = {
-      from: process.env.TRAINER_EMAIL_USER, // Email pengirim untuk Trainer
-      to: 'amadeusmozartissagei@gmail.com', // Email penerima untuk trainer registration
-      subject: `🧾 Pendaftaran Trainer Baru - ${fullName} | Akualita Academy`,
+      from: process.env.TRAINER_EMAIL_USER,
+      to: 'amadeusmozartissagei@gmail.com',
+      subject: `🧾 Pendaftaran Trainer Baru (TEST) - ${fullName} | Akualita Academy`,
       html: htmlContent,
-      attachments: attachments, // Add PDF attachments
     };
 
     // Kirim email
     await transporter.sendMail(mailOptions);
 
-    // Cleanup temporary files
-    const { unlink } = await import('fs/promises');
-    for (const tempFile of tempFiles) {
-      try {
-        await unlink(tempFile);
-      } catch (cleanupError) {
-        console.warn('Failed to delete temp file:', tempFile, cleanupError);
-      }
-    }
-
-    console.log('Trainer registration email sent successfully with attachments');
+    console.log('Trainer registration email sent successfully (TEST VERSION)');
     return NextResponse.json({ 
-      message: 'Email pendaftaran trainer berhasil dikirim dengan lampiran PDF!' 
+      message: 'Email pendaftaran trainer berhasil dikirim (TEST VERSION)!' 
     });
 
   } catch (error) {
     console.error('Error sending trainer registration email:', error);
-    
-    // Cleanup temporary files on error
-    if (tempFiles && tempFiles.length > 0) {
-      const { unlink } = await import('fs/promises');
-      for (const tempFile of tempFiles) {
-        try {
-          await unlink(tempFile);
-        } catch (cleanupError) {
-          console.warn('Failed to delete temp file on error cleanup:', tempFile, cleanupError);
-        }
-      }
-    }
     
     return NextResponse.json(
       { error: 'Terjadi kesalahan saat mengirim email. Silakan coba lagi.' },
