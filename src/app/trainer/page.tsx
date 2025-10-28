@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 const trainingTopics = {
   "Pelatihan Sertifikasi (Online)": [
@@ -302,13 +303,16 @@ export default function TrainerPage() {
         <div className="max-w-7xl mx-auto h-full relative overflow-visible">
           {/* Trainer Image */}
           <div className="absolute left-0 z-10" style={{ top: '50%' }}>
-            <img
+            <Image
               src="/trainer1.png"
               alt="Trainer Akualita Academy"
+              width={400}
+              height={550}
               className="w-auto h-[450px] sm:h-[500px] lg:h-[550px] object-contain"
               style={{
                 transform: 'translateY(-30%)'
               }}
+              priority
             />
           </div>
           
