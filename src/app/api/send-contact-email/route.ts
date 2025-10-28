@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     // Konfigurasi email
     const mailOptions = {
       from: process.env.EMAIL_USER, // Email pengirim untuk QNA
-      to: 'academy@akualita.com', // Email penerima untuk QNA dari landing page
+      to: 'hamzapratama000@gmail.com', // Email penerima untuk QNA dari landing page
       replyTo: email, // Email yang bisa di-reply
       subject: `[AKUALITA Academy] ${subject}`,
       html: `

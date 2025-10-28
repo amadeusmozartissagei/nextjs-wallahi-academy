@@ -373,7 +373,7 @@ export async function POST(request: NextRequest) {
     // Konfigurasi email
     const mailOptions = {
       from: process.env.TRAINER_EMAIL_USER, // Email pengirim untuk Trainer
-      to: 'hrga@akualita.com', // Email penerima untuk trainer registration
+      to: 'amadeusmozartissagei@gmail.com', // Email penerima untuk trainer registration
       subject: `🧾 Pendaftaran Trainer Baru - ${fullName} | Akualita Academy`,
       html: htmlContent,
       attachments: attachments, // Add PDF attachments

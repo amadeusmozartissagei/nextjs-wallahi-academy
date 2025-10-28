@@ -9,14 +9,14 @@ Sistem email telah dikonfigurasi untuk mengirim email ke alamat yang berbeda ber
 ### 1. **Landing Page (QNA/Contact Form)**
 - **API Endpoint**: `/api/send-contact-email`
 - **Email Pengirim**: `qnaakualitaacademy@gmail.com`
-- **Email Penerima**: `academy@akualita.com`
+- **Email Penerima**: `hamzapratama000@gmail.com`
 - **Fungsi**: Menangani pertanyaan dan kontak dari landing page
 - **Target**: Tim Academy untuk menangani pertanyaan umum
 
 ### 2. **Trainer Registration Page**
 - **API Endpoint**: `/api/send-trainer-email`
 - **Email Pengirim**: `trainerakualitaacademy@gmail.com`
-- **Email Penerima**: `hrga@akualita.com`
+- **Email Penerima**: `amadeusmozartissagei@gmail.com`
 - **Fungsi**: Menangani pendaftaran trainer dengan lampiran file
 - **Target**: Tim HRGA untuk proses rekrutmen trainer
 
@@ -38,8 +38,8 @@ TRAINER_EMAIL_PASS=rtvs qzqp eoie rqwe
 
 Email penerima sekarang di-hardcode di dalam kode untuk memastikan routing yang tepat:
 
-- **Landing Page** → `academy@akualita.com`
-- **Trainer Page** → `hrga@akualita.com`
+- **Landing Page** → `hamzapratama000@gmail.com`
+- **Trainer Page** → `amadeusmozartissagei@gmail.com`
 
 ## Keuntungan Routing Logic
 
@@ -54,21 +54,21 @@ Email penerima sekarang di-hardcode di dalam kode untuk memastikan routing yang 
 1. Buka landing page
 2. Scroll ke bagian "Hubungi kami"
 3. Isi form dan kirim
-4. Periksa email di `academy@akualita.com`
+4. Periksa email di `hamzapratama000@gmail.com`
 
 ### Test Trainer Email
 1. Buka halaman trainer registration
 2. Isi form lengkap dengan file
 3. Submit form
-4. Periksa email di `hrga@akualita.com`
+4. Periksa email di `amadeusmozartissagei@gmail.com`
 
 ## File yang Dimodifikasi
 
 1. **`src/app/api/send-contact-email/route.ts`**
-   - Line 38: `to: 'academy@akualita.com'`
+   - Line 38: `to: 'hamzapratama000@gmail.com'`
 
 2. **`src/app/api/send-trainer-email/route.ts`**
-   - Line 376: `to: 'hrga@akualita.com'`
+   - Line 376: `to: 'amadeusmozartissagei@gmail.com'`
 
 ## Troubleshooting
 
