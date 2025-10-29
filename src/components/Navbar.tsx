@@ -9,7 +9,7 @@ export default function Navbar() {
   const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-sm transition duration-300">
+    <nav className="sticky top-0 z-50 bg-white shadow-md transition duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-20">
         <div className="flex items-center justify-between py-3 md:py-4">
           {/* Logo - Rata Kiri */}

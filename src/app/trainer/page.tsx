@@ -222,6 +222,22 @@ export default function TrainerPage() {
     if (!formData.agreement) newErrors.agreement = 'Anda harus menyetujui pernyataan pendaftar';
 
     setErrors(newErrors);
+    
+    // Scroll to first error field
+    if (Object.keys(newErrors).length > 0) {
+      const firstErrorField = Object.keys(newErrors)[0];
+      const errorElement = document.querySelector(`[name="${firstErrorField}"]`) || 
+                          document.getElementById(`field-${firstErrorField}`);
+      
+      if (errorElement) {
+        errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Focus on the element if it's an input
+        if (errorElement instanceof HTMLInputElement || errorElement instanceof HTMLTextAreaElement) {
+          setTimeout(() => errorElement.focus(), 500);
+        }
+      }
+    }
+    
     return Object.keys(newErrors).length === 0;
   };
 
@@ -387,9 +403,9 @@ export default function TrainerPage() {
               }}
               onClick={() => {
                 // Scroll to form section
-                const formSection = document.querySelector('form');
+                const formSection = document.getElementById('form-section');
                 if (formSection) {
-                  formSection.scrollIntoView({ behavior: 'smooth' });
+                  formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
             >
@@ -408,8 +424,157 @@ export default function TrainerPage() {
         </div>
       </div>
 
+      {/* 4 Benefits Points Section */}
+      <div className="bg-gray-50 py-8" style={{ marginTop: '20px' }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="ml-auto mr-8 sm:mr-16 lg:mr-24 px-4 sm:px-6 lg:px-8" style={{ maxWidth: '724px' }}>
+            <div className="space-y-6">
+            {/* Point 1 - Jadi Sosok Inspiratif */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <Image
+                  src="/images/svg/trainer1.svg"
+                  alt="Inspirational Icon"
+                  width={64}
+                  height={64}
+                  className="w-14 h-14 md:w-16 md:h-16"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 
+                  className="font-semibold text-lg md:text-xl mb-2"
+                  style={{
+                    fontFamily: 'var(--font-poppins), sans-serif',
+                    color: '#777777'
+                  }}
+                >
+                  Jadi Sosok Inspiratif
+                </h3>
+                <p 
+                  className="text-sm md:text-base leading-relaxed"
+                  style={{
+                    fontFamily: 'var(--font-poppins), sans-serif',
+                    fontWeight: 300,
+                    color: '#777777',
+                    textAlign: 'justify'
+                  }}
+                >
+                  Bagikan pengalaman dan keahlianmu kepada ribuan peserta pelatihan dan profesional K3L di seluruh Indonesia.
+                </p>
+              </div>
+            </div>
+
+            {/* Point 2 - Susun Materi Belajar */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <Image
+                  src="/images/svg/trainer2.svg"
+                  alt="Learning Materials Icon"
+                  width={64}
+                  height={64}
+                  className="w-14 h-14 md:w-16 md:h-16"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 
+                  className="font-semibold text-lg md:text-xl mb-2"
+                  style={{
+                    fontFamily: 'var(--font-poppins), sans-serif',
+                    color: '#777777'
+                  }}
+                >
+                  Susun Materi Belajar dalam Bentuk Video atau Kelas Online
+                </h3>
+                <p 
+                  className="text-sm md:text-base leading-relaxed"
+                  style={{
+                    fontFamily: 'var(--font-poppins), sans-serif',
+                    fontWeight: 300,
+                    color: '#777777',
+                    textAlign: 'justify'
+                  }}
+                >
+                  Kamu bebas menyusun materi pembelajaran interaktif dan aplikatif sesuai bidang keahlianmu.
+                </p>
+              </div>
+            </div>
+
+            {/* Point 3 - Dapatkan Penghasilan */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <Image
+                  src="/images/svg/trainer3.svg"
+                  alt="Professional Recognition Icon"
+                  width={64}
+                  height={64}
+                  className="w-14 h-14 md:w-16 md:h-16"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 
+                  className="font-semibold text-lg md:text-xl mb-2"
+                  style={{
+                    fontFamily: 'var(--font-poppins), sans-serif',
+                    color: '#777777'
+                  }}
+                >
+                  Dapatkan Penghasilan & Pengakuan Profesional
+                </h3>
+                <p 
+                  className="text-sm md:text-base leading-relaxed"
+                  style={{
+                    fontFamily: 'var(--font-poppins), sans-serif',
+                    fontWeight: 300,
+                    color: '#777777',
+                    textAlign: 'justify'
+                  }}
+                >
+                  Sebagai Trainer Akualita Academy, kamu berhak atas insentif dan diakui sebagai bagian dari ekosistem edukasi nasional di bidang K3L.
+                </p>
+              </div>
+            </div>
+
+            {/* Point 4 - Perluas Jaringan Profesional */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <Image
+                  src="/images/svg/trainer4.svg"
+                  alt="Professional Network Icon"
+                  width={64}
+                  height={64}
+                  className="w-14 h-14 md:w-16 md:h-16"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 
+                  className="font-semibold text-lg md:text-xl mb-2"
+                  style={{
+                    fontFamily: 'var(--font-poppins), sans-serif',
+                    color: '#777777'
+                  }}
+                >
+                  Perluas Jaringan Profesional
+                </h3>
+                <p 
+                  className="text-sm md:text-base leading-relaxed"
+                  style={{
+                    fontFamily: 'var(--font-poppins), sans-serif',
+                    fontWeight: 300,
+                    color: '#777777',
+                    textAlign: 'justify'
+                  }}
+                >
+                  Bergabunglah dengan komunitas trainer, ahli, dan praktisi K3L dari berbagai industri, mulai dari pertambangan, migas, manufaktur, hingga konstruksi dan pengelolaan lingkungan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
       {/* Form Section */}
-      <div className="py-16 bg-gray-50" style={{ marginTop: '200px' }}>
+      <div id="form-section" className="py-16 bg-gray-50" style={{ marginTop: '50px' }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
           <div className="text-center mb-16">
@@ -608,7 +773,7 @@ export default function TrainerPage() {
               </div>
 
               {/* Training Topics */}
-              <div>
+              <div id="field-trainingTopics">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Topik Pelatihan yang Ingin Diajukan * (Pilih 1-3 topik)
                 </label>
@@ -866,7 +1031,7 @@ export default function TrainerPage() {
           </div>
 
           {/* Agreement Section */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
+          <div id="field-agreement" className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">✅ Pernyataan Pendaftar</h2>
             <div className="space-y-4">
               <p className="text-gray-700">Dengan mengirim formulir ini, saya menyatakan bahwa:</p>
