@@ -77,49 +77,49 @@ export default function Navbar() {
                   onMouseEnter={() => setIsDesktopDropdownOpen(true)}
                   onMouseLeave={() => setIsDesktopDropdownOpen(false)}
                 >
-                  <div className="px-3 md:px-4 lg:px-6 py-3 md:py-4 lg:py-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 text-gray-700">
+                  <div className="px-2 md:px-3 lg:px-4 py-2 md:py-3 lg:py-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 text-gray-700">
                     
                     {/* Pelatihan Sertifikasi */}
-                    <div className="flex flex-col items-center text-center lg:text-left hover:bg-[#E6F8FE] p-3 lg:p-4 transition duration-300 rounded-xl">
-                      <div className="flex-shrink-0 mb-3">
-                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-10 h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center mx-auto lg:mx-0">
-                          <Image src="/images/svg/certi12.svg" alt="Icon Sertifikasi" width={24} height={24} className="w-5 h-5 lg:w-6 lg:h-6" />
+                    <div className="flex flex-col items-center hover:bg-[#E6F8FE] p-2 lg:p-2.5 transition duration-300 rounded-xl">
+                      <div className="flex-shrink-0 mb-2">
+                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-8 h-8 lg:w-9 lg:h-9 rounded-lg flex items-center justify-center">
+                          <Image src="/images/svg/certi12.svg" alt="Icon Sertifikasi" width={20} height={20} className="w-4 h-4 lg:w-5 lg:h-5" />
                         </div>
                       </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-sm lg:text-base text-gray-900 mb-1">Pelatihan Sertifikasi</h4>
-                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed">
-                          Tingkatkan kompetensi melalui pelatihan sertifikasi resmi dengan materi dari instruktur berpengalaman.
+                      <div className="flex-1 w-full">
+                        <h4 className="font-semibold text-xs lg:text-sm text-gray-900 mb-0.5 text-center">Pelatihan Sertifikasi</h4>
+                        <p className="text-[9px] lg:text-[10px] text-gray-600 leading-relaxed text-center">
+                          Tingkatkan kompetensi melalui pelatihan sertifikasi resmi dari instruktur berpengalaman.
                         </p>
                       </div>
                     </div>
 
                     {/* Pelatihan Non-Sertifikasi */}
-                    <div className="flex flex-col items-center text-center lg:text-left hover:bg-[#E6F8FE] p-3 lg:p-4 transition duration-300 rounded-xl">
-                      <div className="flex-shrink-0 mb-3">
-                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-10 h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center mx-auto lg:mx-0">
-                          <Image src="/images/svg/noncerti12.svg" alt="Icon Non-Sertifikasi" width={24} height={24} className="w-5 h-5 lg:w-6 lg:h-6" />
+                    <div className="flex flex-col items-center hover:bg-[#E6F8FE] p-2 lg:p-2.5 transition duration-300 rounded-xl">
+                      <div className="flex-shrink-0 mb-2">
+                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-8 h-8 lg:w-9 lg:h-9 rounded-lg flex items-center justify-center">
+                          <Image src="/images/svg/noncerti12.svg" alt="Icon Non-Sertifikasi" width={20} height={20} className="w-4 h-4 lg:w-5 lg:h-5" />
                         </div>
                       </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-sm lg:text-base text-gray-900 mb-1">Pelatihan Non-Sertifikasi</h4>
-                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed">
-                          Pelatihan praktis untuk menambah pengetahuan dan keterampilan tanpa persyaratan ujian sertifikasi.
+                      <div className="flex-1 w-full">
+                        <h4 className="font-semibold text-xs lg:text-sm text-gray-900 mb-0.5 text-center">Pelatihan Non-Sertifikasi</h4>
+                        <p className="text-[9px] lg:text-[10px] text-gray-600 leading-relaxed text-center">
+                          Pelatihan praktis untuk menambah pengetahuan dan keterampilan profesional Anda.
                         </p>
                       </div>
                     </div>
 
                     {/* Bootcamp */}
-                    <div className="flex flex-col items-center text-center lg:text-left hover:bg-[#E6F8FE] p-3 lg:p-4 transition duration-300 rounded-xl">
-                      <div className="flex-shrink-0 mb-3">
-                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-10 h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center mx-auto lg:mx-0">
-                          <Image src="/images/svg/boot12.svg" alt="Icon Bootcamp" width={24} height={24} className="w-5 h-5 lg:w-6 lg:h-6" />
+                    <div className="flex flex-col items-center hover:bg-[#E6F8FE] p-2 lg:p-2.5 transition duration-300 rounded-xl">
+                      <div className="flex-shrink-0 mb-2">
+                        <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-8 h-8 lg:w-9 lg:h-9 rounded-lg flex items-center justify-center">
+                          <Image src="/images/svg/boot12.svg" alt="Icon Bootcamp" width={20} height={20} className="w-4 h-4 lg:w-5 lg:h-5" />
                         </div>
                       </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-sm lg:text-base text-gray-900 mb-1">Bootcamp</h4>
-                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed">
-                          Program intensif dengan pembelajaran terstruktur dan praktik langsung untuk menguasai keterampilan.
+                      <div className="flex-1 w-full">
+                        <h4 className="font-semibold text-xs lg:text-sm text-gray-900 mb-0.5 text-center">Bootcamp</h4>
+                        <p className="text-[9px] lg:text-[10px] text-gray-600 leading-relaxed text-center">
+                          Program intensif dengan pembelajaran terstruktur dan praktik langsung secara mendalam.
                         </p>
                       </div>
                     </div>
