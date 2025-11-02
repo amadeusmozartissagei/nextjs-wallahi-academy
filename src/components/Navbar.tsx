@@ -80,7 +80,7 @@ export default function Navbar() {
                   <div className="px-2 md:px-3 lg:px-4 py-2 md:py-3 lg:py-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 text-gray-700">
                     
                     {/* Pelatihan Sertifikasi */}
-                    <div className="flex flex-col items-center hover:bg-[#E6F8FE] p-2 lg:p-2.5 transition duration-300 rounded-xl">
+                    <a href="/program/pelatihan-sertifikasi" className="flex flex-col items-center hover:bg-[#E6F8FE] p-2 lg:p-2.5 transition duration-300 rounded-xl">
                       <div className="flex-shrink-0 mb-2">
                         <div className="bg-gradient-to-br from-[#05E089] to-[#00ACF8] w-8 h-8 lg:w-9 lg:h-9 rounded-lg flex items-center justify-center">
                           <Image src="/images/svg/certi12.svg" alt="Icon Sertifikasi" width={20} height={20} className="w-4 h-4 lg:w-5 lg:h-5" />
@@ -92,7 +92,7 @@ export default function Navbar() {
                           Tingkatkan kompetensi melalui pelatihan sertifikasi resmi dari instruktur berpengalaman.
                         </p>
                       </div>
-                    </div>
+                    </a>
 
                     {/* Pelatihan Non-Sertifikasi */}
                     <div className="flex flex-col items-center hover:bg-[#E6F8FE] p-2 lg:p-2.5 transition duration-300 rounded-xl">
@@ -196,7 +196,7 @@ export default function Navbar() {
                 </button>
                 <ul className={`${isMobileDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden transition-all duration-300 flex-col pl-4 mt-2 space-y-1`}>
                   <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300 py-2 px-3 rounded-md hover:bg-gray-50">
-                    <span className="text-sm sm:text-base">Pelatihan Sertifikasi</span>
+                    <a href="/program/pelatihan-sertifikasi" className="text-sm sm:text-base block">Pelatihan Sertifikasi</a>
                   </li>
                   <li className="cursor-pointer hover:text-[#00ACF8] transition duration-300 py-2 px-3 rounded-md hover:bg-gray-50">
                     <span className="text-sm sm:text-base">Pelatihan Non-Sertifikasi</span>
