@@ -570,7 +570,7 @@ export default function TrainerPage() {
       </div>
 
       {/* Form Section */}
-      <div id="form-section" className="py-16 bg-gray-50" style={{ marginTop: '50px' }}>
+      <div id="form-section" className="pt-20 pb-16 bg-gray-50" style={{ marginTop: '0px' }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
           <div className="text-center mb-16">
