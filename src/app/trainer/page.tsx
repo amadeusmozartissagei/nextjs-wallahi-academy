@@ -442,10 +442,9 @@ export default function TrainerPage() {
               </div>
               <div className="flex-1">
                 <h3 
-                  className="font-semibold text-lg md:text-xl mb-2"
+                  className="font-semibold text-lg md:text-xl mb-2 text-gray-900"
                   style={{
-                    fontFamily: 'var(--font-poppins), sans-serif',
-                    color: '#777777'
+                    fontFamily: 'var(--font-poppins), sans-serif'
                   }}
                 >
                   Jadi Sosok Inspiratif
@@ -477,10 +476,9 @@ export default function TrainerPage() {
               </div>
               <div className="flex-1">
                 <h3 
-                  className="font-semibold text-lg md:text-xl mb-2"
+                  className="font-semibold text-lg md:text-xl mb-2 text-gray-900"
                   style={{
-                    fontFamily: 'var(--font-poppins), sans-serif',
-                    color: '#777777'
+                    fontFamily: 'var(--font-poppins), sans-serif'
                   }}
                 >
                   Susun Materi Belajar dalam Bentuk Video atau Kelas Online
@@ -512,10 +510,9 @@ export default function TrainerPage() {
               </div>
               <div className="flex-1">
                 <h3 
-                  className="font-semibold text-lg md:text-xl mb-2"
+                  className="font-semibold text-lg md:text-xl mb-2 text-gray-900"
                   style={{
-                    fontFamily: 'var(--font-poppins), sans-serif',
-                    color: '#777777'
+                    fontFamily: 'var(--font-poppins), sans-serif'
                   }}
                 >
                   Dapatkan Penghasilan & Pengakuan Profesional
@@ -547,10 +544,9 @@ export default function TrainerPage() {
               </div>
               <div className="flex-1">
                 <h3 
-                  className="font-semibold text-lg md:text-xl mb-2"
+                  className="font-semibold text-lg md:text-xl mb-2 text-gray-900"
                   style={{
-                    fontFamily: 'var(--font-poppins), sans-serif',
-                    color: '#777777'
+                    fontFamily: 'var(--font-poppins), sans-serif'
                   }}
                 >
                   Perluas Jaringan Profesional
