@@ -368,13 +368,14 @@ export default function TrainerPage() {
               className="text-white font-semibold mb-6"
               style={{
                 fontFamily: 'var(--font-poppins), sans-serif',
-                fontSize: 'clamp(24px, 4vw, 36px)',
+                fontSize: 'clamp(32px, 5.5vw, 48px)',
                 lineHeight: '1.2',
                 maxWidth: '740px',
                 textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
               }}
             >
-              Mari berkontribusi dalam peningkatan kualitas SDM Indonesia
+              Mari ambil bagian dalam<br />
+              pengembangan talenta Indonesia.
             </h1>
 
             {/* Description Text */}
@@ -388,7 +389,7 @@ export default function TrainerPage() {
                 maxWidth: '718px'
               }}
             >
-              Bersama Akualita Academy, kamu dapat berbagi keahlian, menginspirasi banyak orang, dan memperluas dampak profesionalmu dalam membangun budaya keselamatan, meningkatkan kesehatan kerja, serta menjaga kelestarian lingkungan berkelanjutan di setiap lini industri Indonesia.
+              Bersama Akualita Academy, bagikan keahlian Anda dan perluas dampak profesional dalam membangun budaya K3L di seluruh industri Indonesia.
             </p>
 
             {/* Button */}
