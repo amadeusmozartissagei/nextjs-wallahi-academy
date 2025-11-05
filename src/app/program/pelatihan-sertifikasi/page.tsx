@@ -190,14 +190,23 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
 export default function PelatihanSertifikasiPage() {
   return (
     <main className="min-h-screen w-full relative">
-      {/* Hero Section dengan Background Gradient */}
+      {/* Wrapper untuk zoom out 10% */}
       <div 
-        className="w-full relative"
         style={{
-          minHeight: '1024px',
-          background: 'linear-gradient(90deg, #04AEFB 0%, #18ECA0 100%)'
+          transform: 'scale(0.9)',
+          transformOrigin: 'top left',
+          width: '111.11%', // Compensate for scale (100% / 0.9)
+          height: '111.11%'  // Compensate for scale (100% / 0.9)
         }}
       >
+        {/* Hero Section dengan Background Gradient */}
+        <div 
+          className="w-full relative"
+          style={{
+            minHeight: '1024px',
+            background: 'linear-gradient(90deg, #04AEFB 0%, #18ECA0 100%)'
+          }}
+        >
         {/* Rectangle 11 */}
         <div 
           style={{
@@ -370,6 +379,7 @@ export default function PelatihanSertifikasiPage() {
         <CardClass left={310} top={65 + 258 + 32} />
         <CardClass left={310 + 330 + 32} top={65 + 258 + 32} />
         <CardClass left={310 + (330 + 32) * 2} top={65 + 258 + 32} />
+        </div>
       </div>
     </main>
   );
