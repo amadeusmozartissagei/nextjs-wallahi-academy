@@ -189,7 +189,13 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
 
 export default function PelatihanSertifikasiPage() {
   return (
-    <main className="min-h-screen w-full relative">
+    <main 
+      className="min-h-screen w-full relative"
+      style={{
+        background: 'linear-gradient(90deg, #04AEFB 0%, #18ECA0 100%)',
+        minHeight: '100vh'
+      }}
+    >
       {/* Wrapper untuk zoom out 10% */}
       <div 
         style={{
@@ -203,7 +209,9 @@ export default function PelatihanSertifikasiPage() {
         <div 
           className="w-full relative"
           style={{
-            minHeight: '1024px',
+            minHeight: 'calc((100vh - 80px) / 0.9)',
+            width: '100%',
+            paddingBottom: '400px',
             background: 'linear-gradient(90deg, #04AEFB 0%, #18ECA0 100%)'
           }}
         >
