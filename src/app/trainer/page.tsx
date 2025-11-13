@@ -345,15 +345,15 @@ export default function TrainerPage() {
         }}
       >
         {/* Container untuk konten */}
-        <div className="max-w-7xl mx-auto h-full relative overflow-visible">
-          {/* Trainer Image */}
-          <div className="absolute left-0 z-10" style={{ top: '50%' }}>
+        <div className="max-w-7xl mx-auto h-full relative overflow-hidden lg:overflow-visible">
+          {/* Trainer Image - Hidden on mobile, visible on desktop */}
+          <div className="hidden lg:block absolute left-0 z-10" style={{ top: '50%' }}>
             <Image
               src="/trainer1.png"
               alt="Trainer Akualita Academy"
               width={400}
               height={550}
-              className="w-auto h-[450px] sm:h-[500px] lg:h-[550px] object-contain"
+              className="w-auto h-[550px] object-contain"
               style={{
                 transform: 'translateY(-30%)'
               }}
@@ -362,31 +362,28 @@ export default function TrainerPage() {
           </div>
           
           {/* Content Area */}
-          <div className="absolute right-4 sm:right-8 lg:right-9 top-8 lg:top-8 w-full sm:w-auto z-10 px-4 sm:px-6 lg:px-8">
+          <div className="absolute left-0 right-0 lg:right-4 lg:left-auto top-8 lg:top-8 z-10 px-4 sm:px-6 lg:px-8 lg:w-auto">
             {/* Title */}
             <h1 
-              className="text-white font-semibold mb-6"
+              className="text-white font-semibold mb-4 lg:mb-6 max-w-full lg:max-w-[740px]"
               style={{
                 fontFamily: 'var(--font-poppins), sans-serif',
-                fontSize: 'clamp(32px, 5.5vw, 48px)',
+                fontSize: 'clamp(24px, 6vw, 48px)',
                 lineHeight: '1.2',
-                maxWidth: '740px',
                 textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
               }}
             >
-              Mari ambil bagian dalam<br />
-              pengembangan talenta Indonesia.
+              Mari ambil bagian dalam<br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>pengembangan talenta Indonesia.
             </h1>
 
             {/* Description Text */}
             <p
-              className="text-white mb-8"
+              className="text-white mb-6 lg:mb-8 text-sm sm:text-base max-w-full lg:max-w-[718px]"
               style={{
                 fontFamily: 'var(--font-poppins), sans-serif',
-                fontSize: '16px',
                 lineHeight: '24px',
-                textAlign: 'justify',
-                maxWidth: '718px'
+                textAlign: 'justify'
               }}
             >
               Bersama Akualita Academy, bagikan keahlian Anda dan perluas dampak profesional dalam membangun budaya K3L di seluruh industri Indonesia.
@@ -394,7 +391,7 @@ export default function TrainerPage() {
 
             {/* Button */}
             <button
-              className="bg-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="bg-white px-6 py-2.5 sm:px-8 sm:py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
               style={{
                 fontFamily: 'var(--font-poppins), sans-serif',
                 fontSize: '14px',
@@ -426,24 +423,24 @@ export default function TrainerPage() {
       </div>
 
       {/* 4 Benefits Points Section */}
-      <div className="bg-gray-50 py-8" style={{ marginTop: '20px' }}>
+      <div className="bg-gray-50 py-6 sm:py-8" style={{ marginTop: '20px' }}>
         <div className="max-w-7xl mx-auto">
-          <div className="ml-auto mr-8 sm:mr-16 lg:mr-24 px-4 sm:px-6 lg:px-8" style={{ maxWidth: '724px' }}>
-            <div className="space-y-6">
+          <div className="mx-auto lg:ml-auto lg:mr-8 xl:mr-16 2xl:mr-24 px-4 sm:px-6 lg:px-8 max-w-full lg:max-w-[724px]">
+            <div className="space-y-4 sm:space-y-6">
             {/* Point 1 - Jadi Sosok Inspiratif */}
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-3 sm:gap-4">
               <div className="flex-shrink-0">
                 <Image
                   src="/images/svg/trainer1.svg"
                   alt="Inspirational Icon"
                   width={64}
                   height={64}
-                  className="w-14 h-14 md:w-16 md:h-16"
+                  className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16"
                 />
               </div>
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <h3 
-                  className="font-semibold text-lg md:text-xl mb-2 text-gray-900"
+                  className="font-semibold text-base sm:text-lg md:text-xl mb-1 sm:mb-2 text-gray-900"
                   style={{
                     fontFamily: 'var(--font-poppins), sans-serif'
                   }}
@@ -451,7 +448,7 @@ export default function TrainerPage() {
                   Jadi Sosok Inspiratif
                 </h3>
                 <p 
-                  className="text-sm md:text-base leading-relaxed"
+                  className="text-xs sm:text-sm md:text-base leading-relaxed"
                   style={{
                     fontFamily: 'var(--font-poppins), sans-serif',
                     fontWeight: 300,
@@ -465,19 +462,19 @@ export default function TrainerPage() {
             </div>
 
             {/* Point 2 - Susun Materi Belajar */}
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-3 sm:gap-4">
               <div className="flex-shrink-0">
                 <Image
                   src="/images/svg/trainer2.svg"
                   alt="Learning Materials Icon"
                   width={64}
                   height={64}
-                  className="w-14 h-14 md:w-16 md:h-16"
+                  className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16"
                 />
               </div>
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <h3 
-                  className="font-semibold text-lg md:text-xl mb-2 text-gray-900"
+                  className="font-semibold text-base sm:text-lg md:text-xl mb-1 sm:mb-2 text-gray-900"
                   style={{
                     fontFamily: 'var(--font-poppins), sans-serif'
                   }}
@@ -485,7 +482,7 @@ export default function TrainerPage() {
                   Susun Materi Belajar dalam Bentuk Video atau Kelas Online
                 </h3>
                 <p 
-                  className="text-sm md:text-base leading-relaxed"
+                  className="text-xs sm:text-sm md:text-base leading-relaxed"
                   style={{
                     fontFamily: 'var(--font-poppins), sans-serif',
                     fontWeight: 300,
@@ -499,19 +496,19 @@ export default function TrainerPage() {
             </div>
 
             {/* Point 3 - Dapatkan Penghasilan */}
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-3 sm:gap-4">
               <div className="flex-shrink-0">
                 <Image
                   src="/images/svg/trainer3.svg"
                   alt="Professional Recognition Icon"
                   width={64}
                   height={64}
-                  className="w-14 h-14 md:w-16 md:h-16"
+                  className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16"
                 />
               </div>
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <h3 
-                  className="font-semibold text-lg md:text-xl mb-2 text-gray-900"
+                  className="font-semibold text-base sm:text-lg md:text-xl mb-1 sm:mb-2 text-gray-900"
                   style={{
                     fontFamily: 'var(--font-poppins), sans-serif'
                   }}
@@ -519,7 +516,7 @@ export default function TrainerPage() {
                   Dapatkan Penghasilan & Pengakuan Profesional
                 </h3>
                 <p 
-                  className="text-sm md:text-base leading-relaxed"
+                  className="text-xs sm:text-sm md:text-base leading-relaxed"
                   style={{
                     fontFamily: 'var(--font-poppins), sans-serif',
                     fontWeight: 300,
@@ -533,19 +530,19 @@ export default function TrainerPage() {
             </div>
 
             {/* Point 4 - Perluas Jaringan Profesional */}
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-3 sm:gap-4">
               <div className="flex-shrink-0">
                 <Image
                   src="/images/svg/trainer4.svg"
                   alt="Professional Network Icon"
                   width={64}
                   height={64}
-                  className="w-14 h-14 md:w-16 md:h-16"
+                  className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16"
                 />
               </div>
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <h3 
-                  className="font-semibold text-lg md:text-xl mb-2 text-gray-900"
+                  className="font-semibold text-base sm:text-lg md:text-xl mb-1 sm:mb-2 text-gray-900"
                   style={{
                     fontFamily: 'var(--font-poppins), sans-serif'
                   }}
@@ -553,7 +550,7 @@ export default function TrainerPage() {
                   Perluas Jaringan Profesional
                 </h3>
                 <p 
-                  className="text-sm md:text-base leading-relaxed"
+                  className="text-xs sm:text-sm md:text-base leading-relaxed"
                   style={{
                     fontFamily: 'var(--font-poppins), sans-serif',
                     fontWeight: 300,
@@ -571,23 +568,23 @@ export default function TrainerPage() {
       </div>
 
       {/* Form Section */}
-      <div id="form-section" className="pt-20 pb-16 bg-gray-50" style={{ marginTop: '0px' }}>
+      <div id="form-section" className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 bg-gray-50" style={{ marginTop: '0px' }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
             🧾 Daftar Jadi Trainer Akualita Academy
           </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
             Isi formulir pendaftaran dan lengkapi dokumen berikut untuk menjadi bagian dari tim trainer profesional kami.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className={`space-y-12 ${isSubmitting ? 'pointer-events-none opacity-75' : ''}`}>
+        <form onSubmit={handleSubmit} className={`space-y-6 sm:space-y-8 lg:space-y-12 ${isSubmitting ? 'pointer-events-none opacity-75' : ''}`}>
           {/* Personal Information */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Informasi Pribadi</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Informasi Pribadi</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Nama Lengkap *
@@ -675,10 +672,10 @@ export default function TrainerPage() {
           </div>
 
           {/* Documents Section */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Dokumen Pendukung</h2>
+          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Dokumen Pendukung</h2>
             
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* CV */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -774,21 +771,21 @@ export default function TrainerPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Topik Pelatihan yang Ingin Diajukan * (Pilih 1-3 topik)
                 </label>
-                <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-md">
-                  <p className="text-sm text-amber-800">
+                <div className="mb-3 sm:mb-4 p-2 sm:p-3 bg-amber-50 border border-amber-200 rounded-md">
+                  <p className="text-xs sm:text-sm text-amber-800">
                     <strong>📋 Batasan Pilihan:</strong> Pilih minimal 1 dan maksimal 3 topik pelatihan yang sesuai dengan keahlian Anda.
                     <span className="block mt-1">
                       <strong>Dipilih:</strong> {formData.trainingTopics.length}/3 topik
                     </span>
                   </p>
                 </div>
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   {Object.entries(trainingTopics).map(([category, topics]) => (
-                    <div key={category} className="border border-gray-200 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-800 mb-3 text-sm bg-gray-50 px-3 py-2 rounded">
+                    <div key={category} className="border border-gray-200 rounded-lg p-3 sm:p-4">
+                      <h4 className="font-semibold text-gray-800 mb-2 sm:mb-3 text-xs sm:text-sm bg-gray-50 px-2 sm:px-3 py-1.5 sm:py-2 rounded">
                         {category}
                       </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {topics.map((topic) => {
                           const isSelected = formData.trainingTopics.includes(topic);
                           const isMaxReached = formData.trainingTopics.length >= 3;
@@ -823,8 +820,8 @@ export default function TrainerPage() {
                   ))}
                 </div>
                 {errors.trainingTopics && <p className="text-red-500 text-sm mt-2">{errors.trainingTopics}</p>}
-                <div className="mt-3 p-3 bg-blue-50 rounded-md">
-                  <p className="text-sm text-blue-800">
+                <div className="mt-2 sm:mt-3 p-2 sm:p-3 bg-blue-50 rounded-md">
+                  <p className="text-xs sm:text-sm text-blue-800">
                     <strong>💡 Tips:</strong> Pilih 1-3 topik yang paling sesuai dengan keahlian utama Anda. 
                     Pilih dari berbagai kategori untuk menunjukkan keahlian yang beragam dan fokus.
                   </p>
@@ -936,9 +933,9 @@ export default function TrainerPage() {
                   }`}
                   placeholder="https://drive.google.com/file/d/..."
                 />
-                <div className="mt-2 p-3 bg-blue-50 rounded-md">
-                  <h4 className="font-medium text-blue-900 mb-2">🎬 Ketentuan Video:</h4>
-                  <ul className="text-sm text-blue-800 space-y-1">
+                <div className="mt-2 p-2 sm:p-3 bg-blue-50 rounded-md">
+                  <h4 className="font-medium text-blue-900 mb-1 sm:mb-2 text-sm sm:text-base">🎬 Ketentuan Video:</h4>
+                  <ul className="text-xs sm:text-sm text-blue-800 space-y-1">
                     <li>• Durasi minimal 3 menit</li>
                     <li>• Boleh direkam menggunakan handphone tanpa editing</li>
                     <li>• Harus berupa contoh penyampaian materi (bukan video perkenalan)</li>
@@ -946,9 +943,9 @@ export default function TrainerPage() {
                     <li>• Set sharing permission ke &quot;Anyone with the link can view&quot;</li>
                   </ul>
                 </div>
-                <div className="mt-2 p-3 bg-green-50 rounded-md">
-                  <h4 className="font-medium text-green-900 mb-2">📝 Cara Upload ke Google Drive:</h4>
-                  <ol className="text-sm text-green-800 space-y-1 list-decimal list-inside">
+                <div className="mt-2 p-2 sm:p-3 bg-green-50 rounded-md">
+                  <h4 className="font-medium text-green-900 mb-1 sm:mb-2 text-sm sm:text-base">📝 Cara Upload ke Google Drive:</h4>
+                  <ol className="text-xs sm:text-sm text-green-800 space-y-1 list-decimal list-inside">
                     <li>Upload video ke Google Drive</li>
                     <li>Klik kanan pada file → &quot;Share&quot;</li>
                     <li>Set permission ke &quot;Anyone with the link&quot;</li>
@@ -961,11 +958,11 @@ export default function TrainerPage() {
           </div>
 
           {/* Social Media Section */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">🔗 Akun Media Sosial</h2>
-            <p className="text-gray-600 mb-6">Cantumkan profil profesional Anda untuk verifikasi:</p>
+          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">🔗 Akun Media Sosial</h2>
+            <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">Cantumkan profil profesional Anda untuk verifikasi:</p>
             
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   LinkedIn (wajib) *
@@ -1028,11 +1025,11 @@ export default function TrainerPage() {
           </div>
 
           {/* Agreement Section */}
-          <div id="field-agreement" className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">✅ Pernyataan Pendaftar</h2>
-            <div className="space-y-4">
-              <p className="text-gray-700">Dengan mengirim formulir ini, saya menyatakan bahwa:</p>
-              <ul className="space-y-2 text-gray-700">
+          <div id="field-agreement" className="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">✅ Pernyataan Pendaftar</h2>
+            <div className="space-y-3 sm:space-y-4">
+              <p className="text-sm sm:text-base text-gray-700">Dengan mengirim formulir ini, saya menyatakan bahwa:</p>
+              <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base text-gray-700">
                 <li>• Data dan materi yang saya unggah adalah benar dan dapat digunakan untuk proses rekrutmen trainer.</li>
                 <li>• Saya bersedia dihubungi oleh tim Akualita Academy terkait seleksi dan proses selanjutnya.</li>
                 <li>• Saya memahami bahwa partisipasi bersifat sukarela dan hasil seleksi merupakan kewenangan penuh Akualita Academy.</li>
@@ -1057,7 +1054,7 @@ export default function TrainerPage() {
           </div>
 
           {/* CTA Button */}
-          <div className="text-center pt-8">
+          <div className="text-center pt-4 sm:pt-6 lg:pt-8">
             <button
               type="submit"
               disabled={isSubmitting}
@@ -1065,7 +1062,7 @@ export default function TrainerPage() {
                 isSubmitting 
                   ? 'bg-gray-400 cursor-not-allowed' 
                   : 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transform hover:scale-105'
-              } text-white font-bold py-4 px-12 rounded-full text-lg transition-all duration-300 shadow-xl hover:shadow-2xl`}
+              } text-white font-bold py-3 px-8 sm:py-4 sm:px-12 rounded-full text-base sm:text-lg transition-all duration-300 shadow-xl hover:shadow-2xl w-full sm:w-auto`}
             >
               {isSubmitting ? (
                 <div className="flex items-center space-x-2">
@@ -1082,29 +1079,29 @@ export default function TrainerPage() {
             
             {/* Status Message */}
             {submitStatus.type && (
-              <div className={`mt-8 p-6 rounded-xl flex items-center justify-center space-x-3 ${
+              <div className={`mt-4 sm:mt-6 lg:mt-8 p-4 sm:p-6 rounded-xl flex items-center justify-center space-x-2 sm:space-x-3 ${
                 submitStatus.type === 'success' 
                   ? 'bg-green-50 border border-green-200 text-green-800' 
                   : 'bg-red-50 border border-red-200 text-red-800'
               }`}>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
                   submitStatus.type === 'success' ? 'bg-green-100' : 'bg-red-100'
                 }`}>
                   {submitStatus.type === 'success' ? (
-                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   ) : (
-                    <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   )}
                 </div>
-                <p className="font-medium">{submitStatus.message}</p>
+                <p className="font-medium text-sm sm:text-base text-left">{submitStatus.message}</p>
               </div>
             )}
             
-            <p className="mt-8 text-gray-600 max-w-2xl mx-auto text-center leading-relaxed">
+            <p className="mt-4 sm:mt-6 lg:mt-8 text-sm sm:text-base text-gray-600 max-w-2xl mx-auto text-center leading-relaxed px-2">
               Ayo berbagi pengetahuan, bangun karier, dan jadilah bagian dari gerakan kompetensi K3L Indonesia bersama Akualita Academy.
             </p>
           </div>
