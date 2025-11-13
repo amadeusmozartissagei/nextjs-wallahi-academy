@@ -76,6 +76,7 @@ export default function TrainerPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadingFiles, setUploadingFiles] = useState<{[key: string]: boolean}>({});
   const [uploadedFiles, setUploadedFiles] = useState<{[key: string]: boolean}>({});
+  const [formKey, setFormKey] = useState(0); // Key untuk force re-render input file
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
     message: string;
@@ -317,6 +318,16 @@ export default function TrainerPage() {
           facebook: '',
           agreement: false
         });
+        
+        // Reset upload states
+        setUploadingFiles({});
+        setUploadedFiles({});
+        
+        // Reset errors
+        setErrors({});
+        
+        // Force re-render file inputs by changing form key
+        setFormKey(prev => prev + 1);
       } else {
         setSubmitStatus({
           type: 'error',
@@ -580,7 +591,7 @@ export default function TrainerPage() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className={`space-y-6 sm:space-y-8 lg:space-y-12 ${isSubmitting ? 'pointer-events-none opacity-75' : ''}`}>
+        <form key={formKey} onSubmit={handleSubmit} className={`space-y-6 sm:space-y-8 lg:space-y-12 ${isSubmitting ? 'pointer-events-none opacity-75' : ''}`}>
           {/* Personal Information */}
           <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8">
             <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Informasi Pribadi</h2>
