@@ -7,8 +7,8 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
   <div 
     style={{
       position: 'absolute',
-      width: '330px',
-      height: '258px',
+      width: '412.5px',
+      height: '322.5px',
       left: `${left}px`,
       top: `${top}px`
     }}
@@ -18,13 +18,13 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
       style={{
         boxSizing: 'border-box',
         position: 'absolute',
-        width: '330px',
-        height: '258px',
+        width: '412.5px',
+        height: '322.5px',
         left: '0px',
         top: '0px',
         background: '#FFFFFF',
-        borderRadius: '10px',
-        border: '3px solid transparent',
+        borderRadius: '12.5px',
+        border: '3.75px solid transparent',
         backgroundImage: 'linear-gradient(#FFFFFF, #FFFFFF), linear-gradient(0deg, #18ECA0 0%, #00C0E8 100%)',
         backgroundOrigin: 'border-box',
         backgroundClip: 'content-box, border-box'
@@ -34,24 +34,24 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
       <div
         style={{
           position: 'absolute',
-          width: '305px',
-          height: '141px',
-          left: '12px',
-          top: '14px',
-          borderRadius: '11px',
+          width: '381.25px',
+          height: '176.25px',
+          left: '15px',
+          top: '17.5px',
+          borderRadius: '13.75px',
           overflow: 'hidden'
         }}
       >
         <Image
           src="/images/pelatihan-sertifikasi/image10.png"
           alt="Pelatihan Sertifikasi"
-          width={305}
-          height={141}
+          width={381}
+          height={176}
           style={{
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            borderRadius: '11px'
+            borderRadius: '13.75px'
           }}
         />
       </div>
@@ -60,15 +60,15 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
       <div
         style={{
           position: 'absolute',
-          width: '245px',
-          height: '24px',
-          left: '14px',
-          top: '161px',
+          width: '306.25px',
+          height: '30px',
+          left: '17.5px',
+          top: '201.25px',
           fontFamily: 'var(--font-poppins), Poppins, sans-serif',
           fontStyle: 'normal',
           fontWeight: 600,
-          fontSize: '16px',
-          lineHeight: '24px',
+          fontSize: '20px',
+          lineHeight: '30px',
           textAlign: 'center',
           color: '#535353'
         }}
@@ -80,12 +80,12 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
       <div 
         style={{
           position: 'absolute',
-          width: '115px',
-          height: '23px',
-          left: '14px',
-          top: '187px',
+          width: '143.75px',
+          height: '28.75px',
+          left: '17.5px',
+          top: '233.75px',
           background: '#00C0E8',
-          borderRadius: '26px'
+          borderRadius: '32.5px'
         }}
       >
       </div>
@@ -94,15 +94,15 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
       <div
         style={{
           position: 'absolute',
-          width: '79px',
-          height: '18px',
-          left: '32px',
-          top: '189px',
+          width: '98.75px',
+          height: '22.5px',
+          left: '40px',
+          top: '236.25px',
           fontFamily: 'var(--font-poppins), Poppins, sans-serif',
           fontStyle: 'normal',
           fontWeight: 600,
-          fontSize: '12px',
-          lineHeight: '18px',
+          fontSize: '15px',
+          lineHeight: '22.5px',
           display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
@@ -116,15 +116,15 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
       <div
         style={{
           position: 'absolute',
-          width: '83px',
-          height: '24px',
-          left: '42px',
-          top: '222px',
+          width: '103.75px',
+          height: '30px',
+          left: '52.5px',
+          top: '277.5px',
           fontFamily: 'var(--font-poppins), Poppins, sans-serif',
           fontStyle: 'normal',
           fontWeight: 600,
-          fontSize: '16px',
-          lineHeight: '24px',
+          fontSize: '20px',
+          lineHeight: '30px',
           display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
@@ -138,17 +138,17 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
       <div
         style={{
           position: 'absolute',
-          left: '14px',
-          top: '224px',
-          width: '21px',
-          height: '21px'
+          left: '17.5px',
+          top: '280px',
+          width: '26.25px',
+          height: '26.25px'
         }}
       >
         <Image
           src="/images/pelatihan-sertifikasi/Vectordolar.svg"
           alt="Price icon"
-          width={21}
-          height={21}
+          width={26}
+          height={26}
         />
       </div>
 
@@ -156,10 +156,10 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
       <div 
         style={{
           position: 'absolute',
-          width: '40px',
-          height: '40px',
-          left: '275px',
-          top: '204px',
+          width: '50px',
+          height: '50px',
+          left: '343.75px',
+          top: '255px',
           background: '#D9D9D9',
           borderRadius: '50%'
         }}
@@ -170,17 +170,17 @@ const CardClass = ({ left, top }: { left: number; top: number }) => (
       <div
         style={{
           position: 'absolute',
-          left: '285.5px',
-          top: '214.5px',
-          width: '19px',
-          height: '19px'
+          left: '356.875px',
+          top: '268.125px',
+          width: '23.75px',
+          height: '23.75px'
         }}
       >
         <Image
           src="/images/pelatihan-sertifikasi/Arrow1.svg"
           alt="Arrow icon"
-          width={19}
-          height={19}
+          width={24}
+          height={24}
         />
       </div>
     </div>
@@ -211,7 +211,7 @@ export default function PelatihanSertifikasiPage() {
           style={{
             minHeight: 'calc((100vh - 80px) / 0.9)',
             width: '100%',
-            paddingBottom: '400px',
+            paddingBottom: '500px',
             background: 'linear-gradient(90deg, #04AEFB 0%, #18ECA0 100%)'
           }}
         >
@@ -219,28 +219,28 @@ export default function PelatihanSertifikasiPage() {
         <div 
           style={{
             position: 'absolute',
-            width: '240px',
-            height: '480px',
-            left: '37px',
-            top: '65px',
+            width: '300px',
+            height: '600px',
+            left: '46.25px',
+            top: '81.25px',
             background: '#FFFFFF',
-            boxShadow: '0px 3px 11.2px 1px rgba(0, 0, 0, 0.25)',
-            borderRadius: '27px'
+            boxShadow: '0px 3.75px 14px 1.25px rgba(0, 0, 0, 0.25)',
+            borderRadius: '33.75px'
           }}
         >
           {/* Pilihan Kelas */}
           <div
             style={{
               position: 'absolute',
-              width: '159px',
-              height: '36px',
-              left: '40px',
-              top: '14px',
+              width: '198.75px',
+              height: '45px',
+              left: '50px',
+              top: '17.5px',
               fontFamily: 'var(--font-poppins), Poppins, sans-serif',
               fontStyle: 'normal',
               fontWeight: 700,
-              fontSize: '24px',
-              lineHeight: '36px',
+              fontSize: '30px',
+              lineHeight: '45px',
               textAlign: 'center',
               color: '#00C0E8'
             }}
@@ -252,12 +252,12 @@ export default function PelatihanSertifikasiPage() {
           <div 
             style={{
               position: 'absolute',
-              width: '205px',
-              height: '43px',
-              left: '17px',
-              top: '67px',
+              width: '256.25px',
+              height: '53.75px',
+              left: '21.25px',
+              top: '83.75px',
               background: 'linear-gradient(90deg, #00C0E8 0%, #18ECA0 100%)',
-              borderRadius: '10px',
+              borderRadius: '12.5px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
@@ -269,8 +269,8 @@ export default function PelatihanSertifikasiPage() {
                 fontFamily: 'var(--font-poppins), Poppins, sans-serif',
                 fontStyle: 'normal',
                 fontWeight: 700,
-                fontSize: '16px',
-                lineHeight: '24px',
+                fontSize: '20px',
+                lineHeight: '30px',
                 textAlign: 'center',
                 color: '#FFFFFF'
               }}
@@ -283,15 +283,15 @@ export default function PelatihanSertifikasiPage() {
           <div
             style={{
               position: 'absolute',
-              width: '189px',
-              height: '24px',
-              left: '26px',
-              top: '143px',
+              width: '236.25px',
+              height: '30px',
+              left: '32.5px',
+              top: '178.75px',
               fontFamily: 'var(--font-poppins), Poppins, sans-serif',
               fontStyle: 'normal',
               fontWeight: 700,
-              fontSize: '16px',
-              lineHeight: '24px',
+              fontSize: '20px',
+              lineHeight: '30px',
               textAlign: 'center',
               color: '#B3B3B3'
             }}
@@ -303,15 +303,15 @@ export default function PelatihanSertifikasiPage() {
           <div
             style={{
               position: 'absolute',
-              width: '189px',
-              height: '24px',
-              left: '26px',
-              top: '210px',
+              width: '236.25px',
+              height: '30px',
+              left: '32.5px',
+              top: '262.5px',
               fontFamily: 'var(--font-poppins), Poppins, sans-serif',
               fontStyle: 'normal',
               fontWeight: 700,
-              fontSize: '16px',
-              lineHeight: '24px',
+              fontSize: '20px',
+              lineHeight: '30px',
               textAlign: 'center',
               color: '#B3B3B3'
             }}
@@ -323,15 +323,15 @@ export default function PelatihanSertifikasiPage() {
           <div
             style={{
               position: 'absolute',
-              width: '189px',
-              height: '24px',
-              left: '26px',
-              top: '277px',
+              width: '236.25px',
+              height: '30px',
+              left: '32.5px',
+              top: '346.25px',
               fontFamily: 'var(--font-poppins), Poppins, sans-serif',
               fontStyle: 'normal',
               fontWeight: 700,
-              fontSize: '16px',
-              lineHeight: '24px',
+              fontSize: '20px',
+              lineHeight: '30px',
               textAlign: 'center',
               color: '#B3B3B3'
             }}
@@ -343,15 +343,15 @@ export default function PelatihanSertifikasiPage() {
           <div
             style={{
               position: 'absolute',
-              width: '189px',
-              height: '24px',
-              left: '26px',
-              top: '344px',
+              width: '236.25px',
+              height: '30px',
+              left: '32.5px',
+              top: '430px',
               fontFamily: 'var(--font-poppins), Poppins, sans-serif',
               fontStyle: 'normal',
               fontWeight: 700,
-              fontSize: '16px',
-              lineHeight: '24px',
+              fontSize: '20px',
+              lineHeight: '30px',
               textAlign: 'center',
               color: '#B3B3B3'
             }}
@@ -363,15 +363,15 @@ export default function PelatihanSertifikasiPage() {
           <div
             style={{
               position: 'absolute',
-              width: '189px',
-              height: '24px',
-              left: '26px',
-              top: '411px',
+              width: '236.25px',
+              height: '30px',
+              left: '32.5px',
+              top: '513.75px',
               fontFamily: 'var(--font-poppins), Poppins, sans-serif',
               fontStyle: 'normal',
               fontWeight: 700,
-              fontSize: '16px',
-              lineHeight: '24px',
+              fontSize: '20px',
+              lineHeight: '30px',
               textAlign: 'center',
               color: '#B3B3B3'
             }}
@@ -381,12 +381,12 @@ export default function PelatihanSertifikasiPage() {
         </div>
 
         {/* Card Class Grid - 3 columns x 2 rows */}
-        <CardClass left={310} top={65} />
-        <CardClass left={310 + 330 + 32} top={65} />
-        <CardClass left={310 + (330 + 32) * 2} top={65} />
-        <CardClass left={310} top={65 + 258 + 32} />
-        <CardClass left={310 + 330 + 32} top={65 + 258 + 32} />
-        <CardClass left={310 + (330 + 32) * 2} top={65 + 258 + 32} />
+        <CardClass left={387.5} top={81.25} />
+        <CardClass left={387.5 + 412.5 + 40} top={81.25} />
+        <CardClass left={387.5 + (412.5 + 40) * 2} top={81.25} />
+        <CardClass left={387.5} top={81.25 + 322.5 + 40} />
+        <CardClass left={387.5 + 412.5 + 40} top={81.25 + 322.5 + 40} />
+        <CardClass left={387.5 + (412.5 + 40) * 2} top={81.25 + 322.5 + 40} />
         </div>
       </div>
     </main>
