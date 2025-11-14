@@ -1,18 +1,161 @@
 'use client';
 
-import { useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import Image from 'next/image';
 
+type CategoryContent = {
+  overview: string;
+  benefits: string[];
+  outcomes: string[];
+  courses: string[];
+};
+
+const categoryContent: Record<string, CategoryContent> = {
+  'Business Development': {
+    overview:
+      'Pelajari strategi pengembangan bisnis dari tahap riset pasar, perencanaan partnership, hingga implementasi sales pipeline.',
+    benefits: [
+      'Mentoring langsung dari praktisi Business Development',
+      'Studi kasus lokal dan internasional',
+      'Template dokumen partnership dan sales pitch',
+    ],
+    outcomes: [
+      'Mampu menyusun strategi pertumbuhan bisnis yang terukur',
+      'Terampil membangun dan memelihara relasi partnership',
+      'Menguasai analisis peluang pasar dan negosiasi',
+    ],
+    courses: [
+      'Fundamental Business Development Strategy',
+      'Strategic Partnership & Negotiation Mastery',
+      'Sales Pipeline Planning & Forecasting',
+      'Account Management Excellence',
+      'Growth Experimentation Playbook',
+      'Go-To-Market Strategy for New Products',
+    ],
+  },
+  'Digital Marketing': {
+    overview:
+      'Optimalkan performa kampanye digital lewat data, konten, dan automasi untuk mencapai target akuisisi dan retensi.',
+    benefits: [
+      'Akses dashboard analitik real case',
+      'Toolkit content planning dan marketing automation',
+      'Sesi optimasi kampanye bersama mentor',
+    ],
+    outcomes: [
+      'Menyusun full-funnel digital marketing plan',
+      'Mengoptimasi channel SEO, SEM, dan paid ads',
+      'Menganalisis hasil kampanye secara menyeluruh',
+    ],
+    courses: [
+      'Integrated Digital Marketing Blueprint',
+      'Performance Marketing & Optimization',
+      'Content Strategy & Social Media Management',
+      'Marketing Analytics with GA4',
+      'Email & Marketing Automation Workflow',
+      'Community Building for Retention',
+    ],
+  },
+  'Data Science': {
+    overview:
+      'Bangun pondasi data science dari analisis eksploratif, pemodelan prediktif, hingga deployment model machine learning.',
+    benefits: [
+      'Hands-on project dengan dataset industri',
+      'Review model oleh mentor ahli',
+      'Template dokumentasi data pipeline',
+    ],
+    outcomes: [
+      'Mampu membersihkan dan memvisualisasikan data',
+      'Membangun model prediktif menggunakan Python',
+      'Menerapkan model ke lingkungan produksi sederhana',
+    ],
+    courses: [
+      'Python for Data Science Foundations',
+      'Exploratory Data Analysis & Visualization',
+      'Machine Learning Supervised & Unsupervised',
+      'Model Evaluation & Optimization Techniques',
+      'Data Pipeline & Automation Basics',
+      'Deploying Models with Streamlit & FastAPI',
+    ],
+  },
+  'Web Development': {
+    overview:
+      'Kuasi pengembangan web modern dari frontend hingga backend dengan standar produksi dan best practice industri.',
+    benefits: [
+      'Code review berkala dari mentor engineer',
+      'Project real-world dengan stack modern',
+      'Access ke komponen UI reusable',
+    ],
+    outcomes: [
+      'Membangun aplikasi web responsif dan performan',
+      'Mengintegrasikan API dan database',
+      'Menerapkan praktik secure dan scalable',
+    ],
+    courses: [
+      'Responsive Frontend with Next.js & Tailwind',
+      'Backend API with Node.js & Express',
+      'Database Design & Prisma ORM',
+      'Authentication & Authorization Patterns',
+      'Testing & Deployment Workflow',
+      'Performance Optimization & Monitoring',
+    ],
+  },
+  'UI/UX Design': {
+    overview:
+      'Rancang pengalaman pengguna end-to-end mulai dari riset, wireframe, hingga prototipe siap uji dengan standar desain terbaru.',
+    benefits: [
+      'Fasilitasi user testing terarah',
+      'Access ke UI kit dan design system premium',
+      'Feedback detail dari praktisi senior',
+    ],
+    outcomes: [
+      'Menyusun riset dan persona pengguna',
+      'Membuat wireframe dan high-fidelity prototype',
+      'Mengonsolidasikan insight ke design system',
+    ],
+    courses: [
+      'User Research & Insight Synthesis',
+      'Information Architecture & Wireframing',
+      'Visual Design Principles & Components',
+      'Prototyping with Figma & FigJam',
+      'Design System Documentation',
+      'Usability Testing & Iteration',
+    ],
+  },
+  'Project Management': {
+    overview:
+      'Kelola proyek kompleks dengan metodologi agile dan waterfall untuk memastikan delivery tepat waktu dan berkualitas.',
+    benefits: [
+      'Template project charter & risk register',
+      'Simulasi scrum & stakeholder management',
+      'Mentoring sesi problem solving',
+    ],
+    outcomes: [
+      'Menyusun rencana proyek yang terukur',
+      'Memimpin eksekusi agile sprint dan review',
+      'Mengelola resiko dan komunikasi stakeholder',
+    ],
+    courses: [
+      'Project Planning & Scope Management',
+      'Agile Scrum Framework Essentials',
+      'Stakeholder Communication Strategy',
+      'Risk & Issue Management Workshop',
+      'Project Monitoring with KPIs & Tools',
+      'Closing & Retrospective Best Practices',
+    ],
+  },
+};
+
 // Card Class Component
-const CardClass = () => (
-  <div 
-    className="w-full"
+const CardClass = ({ title, order }: { title: string; order: number }) => (
+  <div
+    className="w-full card-fade-in"
     style={{
       position: 'relative',
       width: '100%',
       maxWidth: '330px',
-      height: '258px',
-      margin: '0 auto'
+      height: '296px',
+      margin: '0 auto',
+      animationDelay: `${order * 0.08}s`,
     }}
   >
     {/* Rectangle 13 */}
@@ -21,7 +164,7 @@ const CardClass = () => (
         boxSizing: 'border-box',
         position: 'relative',
         width: '100%',
-        height: '258px',
+        height: '296px',
         background: '#FFFFFF',
         borderRadius: '10px',
         border: '3px solid transparent',
@@ -61,7 +204,7 @@ const CardClass = () => (
           style={{
             position: 'absolute',
             width: '245px',
-            height: '24px',
+            height: '48px',
             left: '14px',
             top: '161px',
             fontFamily: 'var(--font-poppins), Poppins, sans-serif',
@@ -70,10 +213,16 @@ const CardClass = () => (
             fontSize: '16px',
             lineHeight: '24px',
             textAlign: 'left',
-            color: '#535353'
+            color: '#535353',
+            whiteSpace: 'normal',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical'
           }}
         >
-          Pelatihan Sertifikasi K3 Umum
+          {title}
         </div>
 
       {/* Rectangle 19 */}
@@ -83,7 +232,7 @@ const CardClass = () => (
           width: '115px',
           height: '23px',
             left: '14px',
-            top: '187px',
+            top: '215px',
             background: '#00C0E8',
           borderRadius: '26px'
           }}
@@ -97,7 +246,7 @@ const CardClass = () => (
             width: '79px',
             height: '18px',
             left: '32px',
-            top: '189px',
+            top: '217px',
             fontFamily: 'var(--font-poppins), Poppins, sans-serif',
             fontStyle: 'normal',
             fontWeight: 600,
@@ -119,7 +268,7 @@ const CardClass = () => (
             width: '83px',
             height: '24px',
             left: '42px',
-            top: '222px',
+            top: '252px',
             fontFamily: 'var(--font-poppins), Poppins, sans-serif',
             fontStyle: 'normal',
             fontWeight: 600,
@@ -139,7 +288,7 @@ const CardClass = () => (
           style={{
           position: 'absolute',
             left: '14px',
-            top: '224px',
+            top: '254px',
           width: '21px',
           height: '21px'
           }}
@@ -159,7 +308,7 @@ const CardClass = () => (
             width: '40px',
             height: '40px',
             left: '275px',
-            top: '204px',
+            top: '236px',
             background: '#D9D9D9',
             borderRadius: '50%',
             display: 'flex',
@@ -174,7 +323,7 @@ const CardClass = () => (
           style={{
             position: 'absolute',
             left: '285.5px',
-            top: '214.5px',
+            top: '246.5px',
             width: '19px',
             height: '19px'
           }}
@@ -202,8 +351,19 @@ export default function PelatihanSertifikasiPage() {
     'Project Management'
   ];
 
+  const activeContent = useMemo< CategoryContent | undefined >(
+    () => categoryContent[activeCategory],
+    [activeCategory]
+  );
+
+  const activeCourses = useMemo(() => {
+    if (!activeContent) return [];
+    return activeContent.courses.map((course, index) => `${index + 1}. ${course}`);
+  }, [activeContent]);
+
   return (
-    <main 
+    <Fragment>
+      <main 
       className="min-h-screen w-full relative overflow-x-hidden"
       style={{
         background: 'linear-gradient(90deg, #04AEFB 0%, #18ECA0 100%)',
@@ -271,7 +431,7 @@ export default function PelatihanSertifikasiPage() {
                 onClick={() => setActiveCategory(category)}
                 className="w-full transition-all duration-200 hover:opacity-80"
                 style={{
-                  height: activeCategory === category ? '43px' : '24px',
+                  minHeight: activeCategory === category ? '43px' : '24px',
                   background: activeCategory === category 
                     ? 'linear-gradient(90deg, #00C0E8 0%, #18ECA0 100%)'
                     : 'transparent',
@@ -279,7 +439,7 @@ export default function PelatihanSertifikasiPage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: activeCategory === category ? '0' : '0',
+                  padding: activeCategory === category ? '6px 10px' : '0 10px',
                   cursor: 'pointer'
                 }}
               >
@@ -292,9 +452,12 @@ export default function PelatihanSertifikasiPage() {
                     lineHeight: '24px',
                     textAlign: 'center',
                     color: activeCategory === category ? '#FFFFFF' : '#B3B3B3',
-                    whiteSpace: 'nowrap',
+                    whiteSpace: 'normal',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
                     width: '100%',
                     padding: '0 10px'
                   }}
@@ -343,9 +506,9 @@ export default function PelatihanSertifikasiPage() {
                   onClick={() => setActiveCategory(category)}
                   className="flex-shrink-0 transition-all duration-200 hover:opacity-80"
                   style={{
-                    height: '36px',
+                    minHeight: '36px',
                     minWidth: 'fit-content',
-                    padding: '0 16px',
+                    padding: '6px 16px',
                     background: activeCategory === category 
                       ? 'linear-gradient(90deg, #00C0E8 0%, #18ECA0 100%)'
                       : '#F5F5F5',
@@ -365,7 +528,12 @@ export default function PelatihanSertifikasiPage() {
                       lineHeight: '20px',
                       textAlign: 'center',
                       color: activeCategory === category ? '#FFFFFF' : '#535353',
-                      whiteSpace: 'nowrap'
+                    whiteSpace: 'normal',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical'
                     }}
                   >
                     {category}
@@ -377,24 +545,197 @@ export default function PelatihanSertifikasiPage() {
         </div>
 
         {/* Card Class Grid - Responsive */}
-        <div 
-          className="flex-1 w-full grid gap-3 sm:gap-4 md:gap-6"
+        <div
+          key={activeCategory}
+          className="flex-1 w-full grid gap-3 sm:gap-4 md:gap-6 fade-in-up"
           style={{
             gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 330px), 1fr))',
             alignContent: 'start',
-            justifyContent: 'start'
+            justifyContent: 'start',
           }}
         >
-          <CardClass />
-          <CardClass />
-          <CardClass />
-          <CardClass />
-          <CardClass />
-          <CardClass />
-        </div>
+          {activeCourses.map((courseTitle, index) => (
+            <CardClass key={courseTitle} title={courseTitle} order={index} />
+          ))}
         </div>
       </div>
+
+      {/* Dynamic Sections */}
+      {activeContent && (
+        <div
+          key={activeCategory}
+          className="w-full flex flex-col gap-6 md:gap-8 px-3 sm:px-4 md:px-9 pb-16 fade-scale"
+        >
+          <div
+            style={{
+              background: '#FFFFFF',
+              boxShadow: '0px 3px 11.2px 1px rgba(0, 0, 0, 0.25)',
+              borderRadius: '27px',
+              padding: '24px 20px',
+            }}
+          >
+            <h2
+              style={{
+                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                fontWeight: 700,
+                fontSize: '22px',
+                lineHeight: '32px',
+                color: '#00C0E8',
+                marginBottom: '12px',
+                textAlign: 'left',
+              }}
+            >
+              Ringkasan Program {activeCategory}
+            </h2>
+            <p
+              style={{
+                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                fontWeight: 400,
+                fontSize: '16px',
+                lineHeight: '26px',
+                color: '#535353',
+              }}
+            >
+              {activeContent.overview}
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            <div
+              style={{
+                background: '#FFFFFF',
+                boxShadow: '0px 3px 11.2px 1px rgba(0, 0, 0, 0.25)',
+                borderRadius: '27px',
+                padding: '24px 20px',
+              }}
+            >
+              <h3
+                style={{
+                  fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                  fontWeight: 700,
+                  fontSize: '20px',
+                  lineHeight: '30px',
+                  color: '#00C0E8',
+                  marginBottom: '12px',
+                  textAlign: 'left',
+                }}
+              >
+                Benefit Mengikuti {activeCategory}
+              </h3>
+              <ul
+                style={{
+                  fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  lineHeight: '26px',
+                  color: '#535353',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '10px',
+                  paddingLeft: '20px',
+                }}
+              >
+                {activeContent.benefits.map((benefit) => (
+                  <li key={benefit} style={{ listStyleType: 'disc' }}>
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div
+              style={{
+                background: '#FFFFFF',
+                boxShadow: '0px 3px 11.2px 1px rgba(0, 0, 0, 0.25)',
+                borderRadius: '27px',
+                padding: '24px 20px',
+              }}
+            >
+              <h3
+                style={{
+                  fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                  fontWeight: 700,
+                  fontSize: '20px',
+                  lineHeight: '30px',
+                  color: '#00C0E8',
+                  marginBottom: '12px',
+                  textAlign: 'left',
+                }}
+              >
+                Kemampuan yang Dipelajari
+              </h3>
+              <ul
+                style={{
+                  fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  lineHeight: '26px',
+                  color: '#535353',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '10px',
+                  paddingLeft: '20px',
+                }}
+              >
+                {activeContent.outcomes.map((outcome) => (
+                  <li key={outcome} style={{ listStyleType: 'disc' }}>
+                    {outcome}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
     </main>
+    <style jsx>{`
+        @keyframes fadeInUp {
+          0% {
+            opacity: 0;
+            transform: translate3d(0, 24px, 0);
+          }
+          100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+          }
+        }
+
+        @keyframes fadeScale {
+          0% {
+            opacity: 0;
+            transform: scale(0.96);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes cardFadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .fade-in-up {
+          animation: fadeInUp 0.55s ease both;
+        }
+
+        .fade-scale {
+          animation: fadeScale 0.55s ease both;
+        }
+
+        .card-fade-in {
+          animation: cardFadeIn 0.5s ease both;
+        }
+      `}</style>
+    </Fragment>
   );
 }
 
