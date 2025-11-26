@@ -156,65 +156,16 @@ export default function PendaftaranPage() {
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
-    try {
-      // TODO: Replace with actual API endpoint
-      const response = await fetch('/api/pendaftaran', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    // Simulasi delay untuk UX
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
-      const result = await response.json();
-
-      if (response.ok) {
-        setSubmitStatus({
-          type: 'success',
-          message: 'Pendaftaran berhasil! Tim kami akan menghubungi Anda segera.'
-        });
-        
-        // Reset form
-        setFormData({
-          trainingTitle: '',
-          trainingDate: '',
-          trainingLocation: 'Online',
-          participantName: '',
-          whatsappNumber: '',
-          recipientEmail: '',
-          recipientPhone: '',
-          recipientName: '',
-          deliveryAddress: '',
-          certificationScheme: '',
-          contactPerson: '',
-          bankType: '',
-          virtualAccount: '',
-          registrantName: '',
-          registrantPhone: '',
-          registrantPosition: '',
-          participantCategory: '',
-          trainingPeriod: '',
-          shirtSize: '',
-          referralCode: '',
-          informationSource: '',
-          otherSource: '',
-          agreement: false
-        });
-      } else {
-        setSubmitStatus({
-          type: 'error',
-          message: result.error || 'Terjadi kesalahan saat mengirim formulir. Silakan coba lagi.'
-        });
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus({
-        type: 'error',
-        message: 'Terjadi kesalahan jaringan. Silakan coba lagi.'
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Hanya menampilkan pesan sukses tanpa mengirim data ke API
+    setSubmitStatus({
+      type: 'success',
+      message: 'Formulir berhasil divalidasi! (Data tidak dikirim ke server)'
+    });
+    
+    setIsSubmitting(false);
   };
 
   const informationSources = [
