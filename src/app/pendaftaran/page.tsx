@@ -123,6 +123,22 @@ export default function PendaftaranPage() {
     }
 
     setErrors(newErrors);
+    
+    // Scroll to first error field
+    if (Object.keys(newErrors).length > 0) {
+      const firstErrorField = Object.keys(newErrors)[0];
+      const errorElement = document.querySelector(`[name="${firstErrorField}"]`) || 
+                          document.getElementById(`field-${firstErrorField}`);
+      
+      if (errorElement) {
+        errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Focus on the element if it's an input
+        if (errorElement instanceof HTMLInputElement || errorElement instanceof HTMLTextAreaElement || errorElement instanceof HTMLSelectElement) {
+          setTimeout(() => errorElement.focus(), 500);
+        }
+      }
+    }
+    
     return Object.keys(newErrors).length === 0;
   };
 
@@ -220,9 +236,8 @@ export default function PendaftaranPage() {
 
   return (
     <div 
-      className="min-h-screen w-full py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-16"
+      className="min-h-screen w-full bg-gray-50 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-16"
       style={{
-        background: 'linear-gradient(90deg, #04AEFB 0%, #18ECA0 100%)',
         minHeight: '100vh'
       }}
     >
@@ -230,19 +245,17 @@ export default function PendaftaranPage() {
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
           <h1 
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4"
             style={{
-              fontFamily: 'var(--font-poppins), Poppins, sans-serif',
-              textShadow: '0px 2px 8px rgba(0, 0, 0, 0.3), 0px 4px 12px rgba(0, 0, 0, 0.2)',
+              fontFamily: 'var(--font-poppins), sans-serif',
             }}
           >
             Formulir Pendaftaran
           </h1>
           <p 
-            className="text-lg sm:text-xl text-white/90"
+            className="text-lg sm:text-xl text-gray-600"
             style={{
-              fontFamily: 'var(--font-poppins), Poppins, sans-serif',
-              textShadow: '0px 2px 6px rgba(0, 0, 0, 0.3), 0px 3px 8px rgba(0, 0, 0, 0.2)',
+              fontFamily: 'var(--font-poppins), sans-serif',
             }}
           >
             AKUALITA Academy 2025
@@ -261,7 +274,7 @@ export default function PendaftaranPage() {
             <h2 
               className="text-xl sm:text-2xl font-bold mb-6"
               style={{
-                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                fontFamily: 'var(--font-poppins), sans-serif',
                 color: '#00C0E8',
               }}
             >
@@ -283,7 +296,7 @@ export default function PendaftaranPage() {
                   } ${isSubmitting ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                   placeholder="Contoh: Ahli K3 Umum Kemnaker RI"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
                 {errors.trainingTitle && (
@@ -305,7 +318,7 @@ export default function PendaftaranPage() {
                     errors.trainingDate ? 'border-red-500' : 'border-gray-300'
                   } ${isSubmitting ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
                 {errors.trainingDate && (
@@ -325,7 +338,7 @@ export default function PendaftaranPage() {
                   disabled={isSubmitting}
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C0E8]"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
               </div>
@@ -342,7 +355,7 @@ export default function PendaftaranPage() {
             <h2 
               className="text-xl sm:text-2xl font-bold mb-6"
               style={{
-                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                fontFamily: 'var(--font-poppins), sans-serif',
                 color: '#00C0E8',
               }}
             >
@@ -364,7 +377,7 @@ export default function PendaftaranPage() {
                   } ${isSubmitting ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                   placeholder="Masukkan nama lengkap"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
                 {errors.participantName && (
@@ -387,7 +400,7 @@ export default function PendaftaranPage() {
                   } ${isSubmitting ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                   placeholder="08xxxxxxxxxx"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
                 {errors.whatsappNumber && (
@@ -407,7 +420,7 @@ export default function PendaftaranPage() {
             <h2 
               className="text-xl sm:text-2xl font-bold mb-6"
               style={{
-                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                fontFamily: 'var(--font-poppins), sans-serif',
                 color: '#00C0E8',
               }}
             >
@@ -429,7 +442,7 @@ export default function PendaftaranPage() {
                   } ${isSubmitting ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                   placeholder="contoh@email.com"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
                 {errors.recipientEmail && (
@@ -450,7 +463,7 @@ export default function PendaftaranPage() {
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C0E8]"
                   placeholder="08xxxxxxxxxx"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
               </div>
@@ -470,7 +483,7 @@ export default function PendaftaranPage() {
                   } ${isSubmitting ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                   placeholder="Nama lengkap penerima"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
                 {errors.recipientName && (
@@ -493,7 +506,7 @@ export default function PendaftaranPage() {
                   } ${isSubmitting ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                   placeholder="Masukkan alamat lengkap untuk pengiriman sertifikat"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
                 {errors.deliveryAddress && (
@@ -513,7 +526,7 @@ export default function PendaftaranPage() {
             <h2 
               className="text-xl sm:text-2xl font-bold mb-6"
               style={{
-                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                fontFamily: 'var(--font-poppins), sans-serif',
                 color: '#00C0E8',
               }}
             >
@@ -532,7 +545,7 @@ export default function PendaftaranPage() {
                 className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C0E8]"
                 placeholder="Jelaskan skema sertifikasi yang diikuti"
                 style={{
-                  fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                  fontFamily: 'var(--font-poppins), sans-serif',
                 }}
               />
             </div>
@@ -548,7 +561,7 @@ export default function PendaftaranPage() {
             <h2 
               className="text-xl sm:text-2xl font-bold mb-6"
               style={{
-                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                fontFamily: 'var(--font-poppins), sans-serif',
                 color: '#00C0E8',
               }}
             >
@@ -567,7 +580,7 @@ export default function PendaftaranPage() {
                 className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C0E8]"
                 placeholder="Nama dan kontak tim academy"
                 style={{
-                  fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                  fontFamily: 'var(--font-poppins), sans-serif',
                 }}
               />
             </div>
@@ -583,7 +596,7 @@ export default function PendaftaranPage() {
             <h2 
               className="text-xl sm:text-2xl font-bold mb-6"
               style={{
-                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                fontFamily: 'var(--font-poppins), sans-serif',
                 color: '#00C0E8',
               }}
             >
@@ -601,7 +614,7 @@ export default function PendaftaranPage() {
                   disabled={isSubmitting}
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C0E8]"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 >
                   <option value="">Pilih Bank</option>
@@ -627,7 +640,7 @@ export default function PendaftaranPage() {
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C0E8]"
                   placeholder="Nomor virtual account"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
                 <p className="text-xs text-gray-500 mt-1">
@@ -647,7 +660,7 @@ export default function PendaftaranPage() {
             <h2 
               className="text-xl sm:text-2xl font-bold mb-6"
               style={{
-                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                fontFamily: 'var(--font-poppins), sans-serif',
                 color: '#00C0E8',
               }}
             >
@@ -667,7 +680,7 @@ export default function PendaftaranPage() {
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C0E8]"
                   placeholder="Nama HR, HC, atau PIC perusahaan"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
               </div>
@@ -685,7 +698,7 @@ export default function PendaftaranPage() {
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C0E8]"
                   placeholder="08xxxxxxxxxx"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
               </div>
@@ -703,7 +716,7 @@ export default function PendaftaranPage() {
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C0E8]"
                   placeholder="Contoh: HR, HC, PIC Perusahaan"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
               </div>
@@ -720,7 +733,7 @@ export default function PendaftaranPage() {
             <h2 
               className="text-xl sm:text-2xl font-bold mb-6"
               style={{
-                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                fontFamily: 'var(--font-poppins), sans-serif',
                 color: '#00C0E8',
               }}
             >
@@ -740,7 +753,7 @@ export default function PendaftaranPage() {
                     errors.participantCategory ? 'border-red-500' : 'border-gray-300'
                   } ${isSubmitting ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 >
                   <option value="">Pilih Kategori</option>
@@ -765,7 +778,7 @@ export default function PendaftaranPage() {
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C0E8]"
                   placeholder="Contoh: Batch 1, Batch 2, dll"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
               </div>
@@ -783,7 +796,7 @@ export default function PendaftaranPage() {
                     errors.shirtSize ? 'border-red-500' : 'border-gray-300'
                   } ${isSubmitting ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 >
                   <option value="">Pilih Ukuran</option>
@@ -812,7 +825,7 @@ export default function PendaftaranPage() {
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00C0E8]"
                   placeholder="Masukkan kode referral jika ada"
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 />
               </div>
@@ -830,7 +843,7 @@ export default function PendaftaranPage() {
                     errors.informationSource ? 'border-red-500' : 'border-gray-300'
                   } ${isSubmitting ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 >
                   <option value="">Pilih Sumber Informasi</option>
@@ -859,7 +872,7 @@ export default function PendaftaranPage() {
                     } ${isSubmitting ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                     placeholder="Sebutkan sumber informasi lainnya"
                     style={{
-                      fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                      fontFamily: 'var(--font-poppins), sans-serif',
                     }}
                   />
                   {errors.otherSource && (
@@ -872,6 +885,7 @@ export default function PendaftaranPage() {
 
           {/* Agreement Section */}
           <div 
+            id="field-agreement"
             className="bg-white rounded-2xl shadow-lg p-6 sm:p-8"
             style={{
               boxShadow: '0px 3px 11.2px 1px rgba(0, 0, 0, 0.25)',
@@ -893,7 +907,7 @@ export default function PendaftaranPage() {
                 htmlFor="agreement" 
                 className="text-sm sm:text-base text-gray-700 cursor-pointer"
                 style={{
-                  fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                  fontFamily: 'var(--font-poppins), sans-serif',
                 }}
               >
                 Saya telah membaca dan setuju dengan{' '}
@@ -935,7 +949,7 @@ export default function PendaftaranPage() {
                     submitStatus.type === 'success' ? 'text-green-800' : 'text-red-800'
                   }`}
                   style={{
-                    fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                    fontFamily: 'var(--font-poppins), sans-serif',
                   }}
                 >
                   {submitStatus.message}
@@ -949,13 +963,26 @@ export default function PendaftaranPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`px-8 py-3 sm:px-12 sm:py-4 rounded-xl text-white font-bold text-lg sm:text-xl transition-all duration-200 ${
+              className={`px-8 py-3 sm:px-12 sm:py-4 rounded-xl text-white font-bold text-lg sm:text-xl transition-all duration-300 ${
                 isSubmitting 
                   ? 'bg-gray-400 cursor-not-allowed' 
-                  : 'bg-gradient-to-r from-[#00C0E8] to-[#18ECA0] hover:opacity-90 shadow-lg'
+                  : 'bg-gradient-to-r from-[#00C0E8] to-[#18ECA0] hover:from-[#00B8D9] hover:to-[#14D99A] hover:scale-105 hover:shadow-2xl active:scale-95 shadow-lg'
               }`}
               style={{
-                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+                fontFamily: 'var(--font-poppins), sans-serif',
+                boxShadow: isSubmitting 
+                  ? '0 4px 6px rgba(0, 0, 0, 0.1)' 
+                  : '0 10px 25px rgba(0, 192, 232, 0.3), 0 4px 10px rgba(24, 236, 160, 0.2)',
+              }}
+              onMouseEnter={(e) => {
+                if (!isSubmitting) {
+                  e.currentTarget.style.boxShadow = '0 15px 35px rgba(0, 192, 232, 0.4), 0 5px 15px rgba(24, 236, 160, 0.3)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isSubmitting) {
+                  e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 192, 232, 0.3), 0 4px 10px rgba(24, 236, 160, 0.2)';
+                }
               }}
             >
               {isSubmitting ? 'Mengirim...' : 'Kirim Formulir Pendaftaran'}
