@@ -233,6 +233,7 @@ export default function PendaftaranPage() {
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
             style={{
               fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+              textShadow: '0px 2px 8px rgba(0, 0, 0, 0.3), 0px 4px 12px rgba(0, 0, 0, 0.2)',
             }}
           >
             Formulir Pendaftaran
@@ -241,6 +242,7 @@ export default function PendaftaranPage() {
             className="text-lg sm:text-xl text-white/90"
             style={{
               fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+              textShadow: '0px 2px 6px rgba(0, 0, 0, 0.3), 0px 3px 8px rgba(0, 0, 0, 0.2)',
             }}
           >
             AKUALITA Academy 2025
