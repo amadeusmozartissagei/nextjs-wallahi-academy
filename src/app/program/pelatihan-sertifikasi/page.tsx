@@ -425,7 +425,7 @@ export default function PelatihanSertifikasiPage() {
 
           {/* Navigation Items */}
           <div className="flex flex-col gap-4">
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
