@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function DummyCoursePage() {
   const [activeTab, setActiveTab] = useState('sertifikasi');
@@ -341,9 +342,11 @@ export default function DummyCoursePage() {
             {/* Trust Signal */}
             <div className="flex items-center gap-3 text-sm text-gray-300">
               <span>Terakui oleh Kemendikti</span>
-              <img
+              <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg/800px-Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg.png"
                 alt="Logo Kemendikti"
+                width={120}
+                height={40}
                 className="h-10 w-auto"
               />
             </div>
@@ -468,10 +471,12 @@ export default function DummyCoursePage() {
               </h2>
               <div className="mentor-grid">
                 <div className="mentor-card">
-                  <div className="mentor-img" style={{ backgroundColor: '#00A9C9' }}>
-                    <img
+                  <div className="mentor-img" style={{ backgroundColor: '#00A9C9', position: 'relative' }}>
+                    <Image
                       src="https://via.placeholder.com/150x150?text=Mentor+1"
                       alt="Yusuf Muhammad"
+                      fill
+                      style={{ objectFit: 'cover' }}
                     />
                   </div>
                   <div className="mentor-info">
@@ -481,10 +486,12 @@ export default function DummyCoursePage() {
                   </div>
                 </div>
                 <div className="mentor-card">
-                  <div className="mentor-img" style={{ backgroundColor: '#00A9C9' }}>
-                    <img
+                  <div className="mentor-img" style={{ backgroundColor: '#00A9C9', position: 'relative' }}>
+                    <Image
                       src="https://via.placeholder.com/150x150?text=Mentor+2"
                       alt="Rizky Muhamad"
+                      fill
+                      style={{ objectFit: 'cover' }}
                     />
                   </div>
                   <div className="mentor-info">
@@ -494,10 +501,12 @@ export default function DummyCoursePage() {
                   </div>
                 </div>
                 <div className="mentor-card">
-                  <div className="mentor-img" style={{ backgroundColor: '#00A9C9' }}>
-                    <img
+                  <div className="mentor-img" style={{ backgroundColor: '#00A9C9', position: 'relative' }}>
+                    <Image
                       src="https://via.placeholder.com/150x150?text=Mentor+3"
                       alt="Agra M."
+                      fill
+                      style={{ objectFit: 'cover' }}
                     />
                   </div>
                   <div className="mentor-info">
